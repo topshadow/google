@@ -10,6 +10,7 @@ task('help', function() {
     .filter(taskName => taskName != 'default')
     .sort();
 
-  console.log(`\n任务列表命令:\n   `, taskList.join('\n    '));
-  console.log(`\n推荐选项 "test" or "serve:devapp".\n\n`);
+  console.log(`\nHere's a list of supported tasks:\n   `, taskList.join('\n    '));
+  console.log(`\nYou're probably looking for "test" or "serve:devapp".\n\n`);
 });
+
