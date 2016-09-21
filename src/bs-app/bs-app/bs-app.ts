@@ -12,10 +12,7 @@ export class Home {
 @Component({
     moduleId: module.id,
     selector: 'demo-app',
-    template: `welecome hehe
-     <button md-fab> this is a button 
-        </button>
-        `
+    template: `<router-outlet></router-outlet>`
 })
 export class DemoApp {
 

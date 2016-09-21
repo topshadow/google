@@ -1,0 +1,7 @@
+<div [ngSwitch]="bsButton.type">
+    
+        <button *ngSwitchCase="'md-button'"  [style.backgroundColor]="bsButton.backgroundColor" [style.color]="bsButton.color" md-button [color]="bsButton.color" >{{bsButton.type}}</button>
+        <button *ngSwitchCase="'md-raised-button'" md-raised-button [color]="bsButton.color">{{bsButton.type}}</button>
+        <button *ngSwitchCase="'md-fab'" md-fab [color]="bsButton.color" >{{bsButton.type}}</button>
+        
+</div>
