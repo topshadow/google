@@ -1,5 +1,8 @@
 import { Routes } from '@angular/router';
-import { Home } from './bs-app';
+import { SignIn } from './sign-in';
+import { Page } from './page';
 export const BS_APP_ROUTES: Routes = [
-    { path: '', component: Home }
+    { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
+    { path: 'sign-in', component: SignIn },
+    { path: ':path', component: Page }
 ];

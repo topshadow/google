@@ -1,0 +1,26 @@
+<!--该组件在page.html中,挂载为右侧的组件-->
+<md-card>
+    <md-card-title>添加按钮</md-card-title>
+    <md-card-content>
+        <button md-raised-button color="primary">示例按钮</button>
+        <bs-button [bsButton]="button"></bs-button>
+
+        <md-grid-list cols="2">
+            <md-grid-tile colspan="2">按钮类型:{{button.type}}</md-grid-tile>
+            <md-grid-tile colspan="2"><button md-button [md-menu-trigger-for]="buttonTypeMenu" >类型 <md-icon>more_vert</md-icon></button>
+                <md-menu #buttonTypeMenu="mdMenu">
+                    <button md-menu-item (click)="changeButtonType('md-button')"><button md-button > button</button> </button>
+                    <button md-menu-item (click)="changeButtonType('md-raised-button')"><button md-raised-button>raised button</button> </button>
+                    <button md-menu-item (click)="changeButtonType('md-fab')"><button md-fab>fab button</button></button>
+                </md-menu>
+             </md-grid-tile>
+             
+             <md-grid-tile><input type="color" [(ngModel)]="button.color" ></md-grid-tile>
+        </md-grid-list>
+
+    </md-card-content>
+
+    <md-card-actions>
+        <button md-button>添加</button> <button md-button (click)="closePanel()">取消</button>
+    </md-card-actions>
+</md-card>

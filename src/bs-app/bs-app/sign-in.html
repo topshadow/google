@@ -1,0 +1,63 @@
+<md-card class="demo-card demo-basic">
+    <md-toolbar color="primary" align="end">旅烨建站系统 </md-toolbar>
+
+    <md-tab-group class="demo-tab-group" #signTab>
+        <!--登陆面板-->
+        <md-tab>
+            <template md-tab-label>登陆</template>
+            <template md-tab-content>
+                <md-card-content style="height:300px">
+                    <md-input dividerColor="primary" placeholder="用户名" maxLength="100" #nameInput style="width:100%">
+                        <md-hint align="end">{{nameInput.characterCount}}/10</md-hint>
+                    </md-input>
+                    <md-input divideColor="accent " type="password" placeholder="密码" maxLength="100" #passwordInput style="width:100%">
+                        <md-hint align="end">{{passwordInput.characterCount}}/10</md-hint>
+                    </md-input>
+                </md-card-content>
+                <md-card-content>
+
+                    <md-grid-list cols="4">
+
+                        <md-grid-tile colspan="1">
+                            <md-checkbox [(ngModel)]="autoSignIn" align="start">记住我</md-checkbox>
+                        </md-grid-tile>
+                        <md-grid-tile colspane="1"></md-grid-tile>
+
+                        <md-grid-tile colspan="2">
+                            <button md-raised-button color="primary" align="end" (click)="signIn()">登陆</button><button md-raised-button color="accent"
+                                align="end" (click)="signTab.selectedIndex=1">注册</button>
+                        </md-grid-tile>
+                    </md-grid-list>
+
+                </md-card-content>
+            </template>
+        </md-tab>
+
+        <!--注册面版-->
+        <md-tab class="demo-tab-group">
+            <template md-tab-label>注册</template>
+            <template md-tab-content>
+                <md-card-content style="height:300px">
+                    <md-input dividerColor="primary" placeholder="用户名" maxLength="100" #nameInput style="width:100%">
+                        <md-hint align="end">6-10位长度, 当前:{{nameInput.characterCount}}/10</md-hint>
+                    </md-input>
+                    <md-input divideColor="accent " type="password" placeholder="密码" maxLength="10" #passwordInput style="width:100%">
+                        <md-hint align="end">6-10位长度, 当前:{{passwordInput.characterCount}}/10</md-hint>
+                    </md-input>
+                    <md-input divideColor="warn" type="password" placeholder="再次输入密码" maxLengh #repeatPasswordInput style="width:100%">
+                        <md-hint align="end">6-10位长度,当前:{{repeatPasswordInput.characterCount}}/10</md-hint>
+                    </md-input>
+                </md-card-content>
+                <md-card-content>
+                    <md-grid-list cols="4">
+                        <md-grid-tile colspan="3"></md-grid-tile>
+                        <md-grid-tile colspan="1"><button md-raised-button color="primary">注册</button>
+                            </md-grid-tile>
+                    </md-grid-list>
+                </md-card-content>
+            </template>
+        </md-tab>
+
+
+    </md-tab-group>
+</md-card>
