@@ -1,4 +1,4 @@
-<md-sidenav-layout class="demo-root" fullscreen>
+<md-sidenav-layout class="demo-root" fullscreen (openPagePanelEvent)="start.open()">
     <md-sidenav #start mode="push" class="left-panel">
         <md-card-content>
             <md-grid-list cols="2">
@@ -57,12 +57,12 @@
         </md-nav-list>
         <button md-button (click)="start.close()">CLOSE</button>
     </md-sidenav>
-
+    
 
     <!--页面主体内容-->
     <div>
         <md-toolbar color="primary">
-            <button md-icon-button (click)="start.open()">
+            <button md-icon-button (click)="start.toggle()" id="start" hidden>
         <md-icon class="md-24" >menu</md-icon>
       </button>
             <div class="demo-toolbar">
@@ -78,7 +78,17 @@
     </div>
 
     <!--以下是各个操作组件的面板,在右侧开启-->
-    <md-sidenav class="right-panel" #addButtonPanel model="push" align="end">
-        <button-panel (closeButtonPanel)="addButtonPanel.close()"></button-panel>
+    <button (click)="rightPanel.toggle();showRightPanel(buttonPanel);" id="rightPanelButton" hidden></button>
+    <md-sidenav id="right-panel" #rightPanel model="push" align="end" id="test">
+        <button-panel class="right-panel-sub" (closeButtonPanel)="addButtonPanel.close();" #buttonPanel></button-panel>
+        <div  class="right-panel-sub"> pagepanel</div>
     </md-sidenav>
+
+    
+
+
+    
+
+
+
 </md-sidenav-layout>
