@@ -16,6 +16,9 @@ import { BsButton } from './panel/button-panel/bs-button';
 import { BsGridLayout } from './container/grid-layout/grid-layout';
 import { BsGridLayoutPanel } from './container/grid-layout/grid-layout-panel';
 
+import { BsListLayout } from './container/list-layout/list-layout';
+import { BsListLayoutPanel } from './container/list-layout/list-layout-panel';
+import { BsNavbar, BsNavbarPanel } from './container/index';
 
 @NgModule({
     imports: [
@@ -23,7 +26,6 @@ import { BsGridLayoutPanel } from './container/grid-layout/grid-layout-panel';
         HttpModule,
         FormsModule,
         RouterModule,
-        CommonModule,
         RouterModule.forRoot(BS_APP_ROUTES),
         MaterialModule.forRoot()
     ],
@@ -36,7 +38,12 @@ import { BsGridLayoutPanel } from './container/grid-layout/grid-layout-panel';
         BsButton,
         WelcomeDialog,
         BsGridLayout,
-        BsGridLayoutPanel],
+        BsGridLayoutPanel,
+        BsListLayout,
+        BsListLayoutPanel,
+        BsNavbar,
+        BsNavbarPanel
+    ],
     bootstrap: [DemoApp],
     entryComponents: [WelcomeDialog, Page, BsGridLayout]
 })

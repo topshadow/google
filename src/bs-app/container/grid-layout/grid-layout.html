@@ -1,8 +1,5 @@
-<md-grid-list [cols]="gridLayout.cols">
-    <md-grid-tile>a</md-grid-tile>
-    <md-grid-tile>b</md-grid-tile>
-    <md-grid-tile>c</md-grid-tile>
-    <md-grid-tile>d</md-grid-tile>
-    <md-grid-tile>e</md-grid-tile>
+<md-grid-list [cols]="gridLayout.cols.length">
     
+    <md-grid-tile *ngFor="let col of gridLayout.cols;let i=index;"  >栅格{{col | json}}：{{i}}/{{gridLayout.cols.length}}</md-grid-tile>
+  
 </md-grid-list>

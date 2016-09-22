@@ -1,7 +1,13 @@
 <md-card>
-    <md-card-title>栅格布局</md-card-title>
+    <md-toolbar color="primary">栅格布局</md-toolbar>
     <md-card-content>
-        <!--<bs-grid-layout [gridLayout]="gridLayout"></bs-grid-layout>-->
-    </md-card-content>
+        <bs-grid-layout      [gridLayout]="gridLayout"></bs-grid-layout>
 
+        <md-list>
+            <md-list-item>
+                行数:<md-input type="number" disable placeholder="列数" [(ngModel)]="colsLength" ></md-input>
+            </md-list-item>
+        </md-list>
+    </md-card-content>
+    
 </md-card>

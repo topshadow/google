@@ -1,5 +1,14 @@
-import { Component, Input } from '@angular/core';
+import {
+    Component,
+    Input,
+    HostListener,
+    ElementRef,
+    Renderer,
+    Output,
+    EventEmitter
+} from '@angular/core';
 
+import { BsGridLayoutPanel } from './grid-layout-panel';
 
 
 @Component({
@@ -9,7 +18,50 @@ import { Component, Input } from '@angular/core';
 })
 export class BsGridLayout {
     @Input()
-    gridlayout: GridLayout;
+    public gridLayout: GridLayout;
 
+    @Output() openPanel = new EventEmitter();
+
+
+    set colsLength(length: number) {
+
+        this.gridLayout.cols.length = isNaN(length) ? 2 : length;
+    }
+
+    get colsLength(): number {
+        return this.gridLayout.cols.length;
+    }
+
+    @HostListener('mousedown', ['$event'])
+    openSettingMenu(event: MouseEvent) {
+        // console.log(event);
+        if (event.button == 2) {
+            console.log('right click open setting menu');
+            this.openPanel.emit({ type: BsGridLayoutPanel, gridLayout: this.gridLayout });
+        }
+        event.preventDefault();
+
+
+    }
+
+
+
+    constructor(private el: ElementRef, private render: Renderer) {
+        // this.gridLayout.cols.
+    }
+
+    @HostListener('mouseenter', ['$evnet'])
+    overBorder() {
+        this.render.setElementStyle(
+            this.el.nativeElement.querySelector('md-grid-list'),
+            'border', '2px solid blue');
+    }
+
+    @HostListener('mouseleave', ['$evnet'])
+    noneBorder() {
+        this.render.setElementStyle(
+            this.el.nativeElement.querySelector('md-grid-list'),
+            'border', 'none');
+    }
 
 }

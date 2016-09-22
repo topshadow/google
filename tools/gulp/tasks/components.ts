@@ -1,9 +1,9 @@
-import {task, watch} from 'gulp';
-import {readdirSync, statSync, writeFileSync} from 'fs';
+import { task, watch } from 'gulp';
+import { readdirSync, statSync, writeFileSync } from 'fs';
 import * as path from 'path';
 
-import {SOURCE_ROOT, DIST_COMPONENTS_ROOT, PROJECT_ROOT} from '../constants';
-import {sassBuildTask, tsBuildTask, execNodeTask, copyTask, sequenceTask} from '../task_helpers';
+import { SOURCE_ROOT, DIST_COMPONENTS_ROOT, PROJECT_ROOT } from '../constants';
+import { sassBuildTask, tsBuildTask, execNodeTask, copyTask, sequenceTask } from '../task_helpers';
 
 // No typings for these.
 const inlineResources = require('../../../scripts/release/inline-resources');
@@ -35,7 +35,7 @@ task(':watch:components:spec', () => {
 task(':build:components:ts', tsBuildTask(componentsDir));
 task(':build:components:spec', tsBuildTask(path.join(componentsDir, 'tsconfig-spec.json')));
 task(':build:components:assets',
-     copyTask(path.join(componentsDir, '*/**/*.!(ts|spec.ts)'), DIST_COMPONENTS_ROOT));
+  copyTask(path.join(componentsDir, '*/**/*.!(ts|spec.ts)'), DIST_COMPONENTS_ROOT));
 task(':build:components:scss', sassBuildTask(
   DIST_COMPONENTS_ROOT, componentsDir, [path.join(componentsDir, 'core/style')]
 ));
@@ -43,7 +43,7 @@ task(':build:components:rollup', [':build:components:ts'], () => {
   const components = readdirSync(componentsDir)
     .filter(componentName => (statSync(path.join(componentsDir, componentName))).isDirectory());
 
-  const globals: {[name: string]: string} = {
+  const globals: { [name: string]: string } = {
     // Angular dependencies
     '@angular/core': 'ng.core',
     '@angular/common': 'ng.common',
@@ -51,6 +51,10 @@ task(':build:components:rollup', [':build:components:ts'], () => {
     '@angular/http': 'ng.http',
     '@angular/platform-browser': 'ng.platformBrowser',
     '@angular/platform-browser-dynamic': 'ng.platformBrowserDynamic',
+
+    // //firebase
+    // 'firebase': 'ng.firebase',
+    // 'angularfire': 'ng.angularfire',
 
     // Rxjs dependencies
     'rxjs/Subject': 'Rx',
@@ -89,7 +93,7 @@ task(':build:components:rollup', [':build:components:ts'], () => {
           globals
         });
         const outputPath = path.join(DIST_COMPONENTS_ROOT, name, `${name}.umd.js`);
-        writeFileSync( outputPath, result.code );
+        writeFileSync(outputPath, result.code);
       });
   }, Promise.resolve());
 });

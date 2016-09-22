@@ -6,15 +6,29 @@ import { Component, OnInit, Input } from '@angular/core';
     templateUrl: './grid-layout-panel.html'
 })
 export class BsGridLayoutPanel {
-    @Input()
-    gridLayout: GridLayout;
+    @Input() gridLayout: GridLayout;
 
     private defaultGridLayout: GridLayout = {
-        cols: 4
+        cols: [{ colspan: 1, component: '容器' }, { colspan: 2, component: '容器2' }]
     };
 
     constructor() {
-        if (!this.gridLayout) { this.gridLayout = this.defaultGridLayout; }
+        // if (!this.gridLayout) { this.gridLayout = this.defaultGridLayout; }
+        this.gridLayout = this.gridLayout ? this.gridLayout : this.defaultGridLayout;
     }
 
+    // 进行数据检查
+    set colsLength(length: number) {
+
+        this.gridLayout.cols.length = isNaN(length) ? 1 : length;
+
+    }
+    hello() {
+        console.log('hello world');
+    }
+
+    openPanel(event: any) {
+        console.log(event);
+        return true;
+    }
 }
