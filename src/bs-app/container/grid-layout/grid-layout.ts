@@ -24,7 +24,6 @@ export class BsGridLayout {
 
 
     set colsLength(length: number) {
-
         this.gridLayout.cols.length = isNaN(length) ? 2 : length;
     }
 

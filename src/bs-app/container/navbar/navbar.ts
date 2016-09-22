@@ -17,7 +17,7 @@ export class BsNavbar {
     openSettingMenu(event: MouseEvent) {
         if (event.button == 2) {
             console.log('right click open setting menu');
-            this.openPanel.emit({ type: BsNavbarPanel, gridLayout: this.bsNavbar });
+            this.openPanel.emit({ type: BsNavbarPanel, bsNavbar: this.bsNavbar });
         }
         event.preventDefault();
     }
