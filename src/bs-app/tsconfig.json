@@ -15,8 +15,12 @@
     "stripInternal": true,
     "baseUrl": "",
     "typeRoots": [
+      "./typings/modules",
+      "./typings/modules/firebase",
       "../../node_modules/@types",
-      "../../node_modules"
+      "../../node_modules",
+      "../../node_modules/angularfire2"
+      
     ],
     "paths": {
       "@angular2-material/*": [
@@ -24,7 +28,7 @@
       ]
     },
     "types": [
-      "hammerjs"
+      "hammerjs","firebase","angularfire2"
     ]
   },
   "angularCompilerOptions": {

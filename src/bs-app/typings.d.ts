@@ -1,4 +1,6 @@
-declare var module: { id: string };
+// declare var module: { id: string };
+declare var require: any;
+declare var module: any;
 
 interface Button {
     type: 'md-button' | 'md-raised-button' | 'md-fab';
@@ -24,8 +26,10 @@ interface GridLayout {
  *  @output  openPanel = new EventEmmitter(<Panel>);
  * 
  * this.openPanel.emit({})
+ * 
+ * 已经放弃使用
  */
-class Panel {
+interface Panel {
     type: KeyType;
     data?:any;
 

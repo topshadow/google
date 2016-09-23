@@ -53,18 +53,19 @@ components.forEach(name => {
  **********************************************************************************************/
 const angularPackages = {
   // Angular specific barrels.
-  '@angular/core': { main: 'bundles/core.umd.js'},
-  '@angular/core/testing': { main: 'bundles/core-testing.umd.js'},
-  '@angular/common': { main: 'bundles/common.umd.js'},
-  '@angular/compiler': { main: 'bundles/compiler.umd.js'},
-  '@angular/http': { main: 'bundles/http.umd.js'},
-  '@angular/forms': { main: 'bundles/forms.umd.js'},
-  '@angular/router': { main: 'bundles/router.umd.js'},
-  '@angular/platform-browser': { main: 'bundles/platform-browser.umd.js'},
-  '@angular/platform-browser-dynamic': { main: 'bundles/platform-browser-dynamic.umd.js'},
+  '@angular/core': { main: 'bundles/core.umd.js' },
+  '@angular/core/testing': { main: 'bundles/core-testing.umd.js' },
+  '@angular/common': { main: 'bundles/common.umd.js' },
+  '@angular/compiler': { main: 'bundles/compiler.umd.js' },
+  '@angular/http': { main: 'bundles/http.umd.js' },
+  '@angular/forms': { main: 'bundles/forms.umd.js' },
+  '@angular/router': { main: 'bundles/router.umd.js' },
+  '@angular/platform-browser': { main: 'bundles/platform-browser.umd.js' },
+  '@angular/platform-browser-dynamic': { main: 'bundles/platform-browser-dynamic.umd.js' },
   '@angular/platform-browser-dynamic/testing': {
     main: 'bundles/platform-browser-dynamic-testing.umd.js'
   },
+
 };
 
 const barrels: string[] = [
@@ -95,7 +96,8 @@ System.config({
   map: {
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
-    'main': 'main.js'
+    'main': 'main.js',
+    'angularfire2': { main: 'vendor/angularfire2/index.js' }
   },
   packages: _cliSystemConfig
 });

@@ -1,13 +1,12 @@
 import { NgModule, ApplicationRef, ComponentFactoryResolver } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '@angular2-material/all';
+// import { AngularFireModule, AngularFire } from './angularfire2';
 
 import { BS_APP_ROUTES } from './bs-app/routes';
-
 import { Home, DemoApp } from './bs-app/bs-app';
 import { SignIn } from './bs-app/sign-in';
 import { Page, WelcomeDialog } from './bs-app/page';
@@ -18,7 +17,17 @@ import { BsGridLayoutPanel } from './container/grid-layout/grid-layout-panel';
 
 import { BsListLayout } from './container/list-layout/list-layout';
 import { BsListLayoutPanel } from './container/list-layout/list-layout-panel';
-import { BsNavbar, BsNavbarPanel } from './container/index';
+import { BsNavbar, BsNavbarPanel } from './container/navbar/navbar';
+
+console.log(AngularFireModule);
+// Must export the config
+export const firebaseConfig = {
+    apiKey: 'AIzaSyDRZod_Ur5T8K7V3kCV3rpRP9NjLGkQBAQ',
+    authDomain: 'topshadow-accda.firebaseapp.com',
+    databaseURL: 'https://topshadow-accda.firebaseio.com',
+    storageBucket: 'topshadow-accda.appspot.com',
+    messagingSenderId: '1069236481103'
+};
 
 @NgModule({
     imports: [
@@ -27,7 +36,8 @@ import { BsNavbar, BsNavbarPanel } from './container/index';
         FormsModule,
         RouterModule,
         RouterModule.forRoot(BS_APP_ROUTES),
-        MaterialModule.forRoot()
+        MaterialModule.forRoot(),
+        // AngularFireModule.initializeApp(firebaseConfig)
     ],
     declarations: [
         Home,
@@ -48,7 +58,11 @@ import { BsNavbar, BsNavbarPanel } from './container/index';
     entryComponents: [WelcomeDialog, Page, BsGridLayout]
 })
 export class BsAppModule {
-    constructor(private appRef: ApplicationRef, public resolver: ComponentFactoryResolver) {
+    constructor(private appRef: ApplicationRef,
+        public resolver: ComponentFactoryResolver
+        // af: AngularFire
+    ) {
+        // console.log(af);
     }
 
     ngDoBootstrap() {

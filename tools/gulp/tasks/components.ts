@@ -106,7 +106,9 @@ task('build:components', sequenceTask(
 ));
 
 task(':build:components:ngc', ['build:components'], execNodeTask(
-  '@angular/compiler-cli', 'ngc', ['-p', path.relative(PROJECT_ROOT, path.join(componentsDir, 'tsconfig.json'))]
+  '@angular/compiler-cli',
+  'ngc',
+  ['-p', path.relative(PROJECT_ROOT, path.join(componentsDir, 'tsconfig.json'))]
 ));
 
 task(':inline-resources', () => {

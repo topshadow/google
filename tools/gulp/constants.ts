@@ -14,6 +14,6 @@ export const NPM_VENDOR_FILES = [
   'rxjs',
   'systemjs/dist',
   'zone.js/dist',
-  'angularfire',
-  'firebase'
+  'angularfire2'
+
 ];

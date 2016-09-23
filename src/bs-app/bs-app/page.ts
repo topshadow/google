@@ -7,7 +7,7 @@ import { website, Website } from '../website';
 // import { BsGridLayout } from '../container/grid-layout/grid-layout';
 import { BsGridLayoutPanel } from '../container/grid-layout/grid-layout-panel';
 import { BsListLayoutPanel } from '../container/list-layout/list-layout-panel';
-import { BsNavbarPanel } from '../container/navbar/navbar';
+// import { BsNavbarPanel } from '../container/navbar/navbar';
 
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular2-material/dialog';
 
@@ -73,11 +73,11 @@ export class Page implements OnInit, AfterViewInit {
                 this.selectedPanelData = event.listLayout;
                 this.toggleRightPanel();
                 break;
-            case BsNavbarPanel:
-                this.selectedPanelIndex = Panels.BsNavbar;
-                this.selectedPanelData = event.bsNavbar;
-                this.toggleRightPanel();
-                break;
+            // case BsNavbarPanel:
+                // this.selectedPanelIndex = Panels.BsNavbar;
+                // this.selectedPanelData = event.bsNavbar;
+                // this.toggleRightPanel();
+                // break;
         }
     }
 
@@ -109,7 +109,7 @@ export class Page implements OnInit, AfterViewInit {
         document.getElementById('rightPanelButton').click();
     }
 
-}
+} 
 
 
 @Component({
