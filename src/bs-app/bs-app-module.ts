@@ -4,7 +4,6 @@ import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MaterialModule } from '@angular2-material/all';
-// import { AngularFireModule, AngularFire } from './angularfire2';
 
 import { BS_APP_ROUTES } from './bs-app/routes';
 import { Home, DemoApp } from './bs-app/bs-app';
@@ -18,16 +17,8 @@ import { BsGridLayoutPanel } from './container/grid-layout/grid-layout-panel';
 import { BsListLayout } from './container/list-layout/list-layout';
 import { BsListLayoutPanel } from './container/list-layout/list-layout-panel';
 import { BsNavbar, BsNavbarPanel } from './container/navbar/navbar';
+import {UserService } from 'core';
 
-console.log(AngularFireModule);
-// Must export the config
-export const firebaseConfig = {
-    apiKey: 'AIzaSyDRZod_Ur5T8K7V3kCV3rpRP9NjLGkQBAQ',
-    authDomain: 'topshadow-accda.firebaseapp.com',
-    databaseURL: 'https://topshadow-accda.firebaseio.com',
-    storageBucket: 'topshadow-accda.appspot.com',
-    messagingSenderId: '1069236481103'
-};
 
 @NgModule({
     imports: [
@@ -54,6 +45,7 @@ export const firebaseConfig = {
         BsNavbar,
         BsNavbarPanel
     ],
+    providers:[UserService],
     bootstrap: [DemoApp],
     entryComponents: [WelcomeDialog, Page, BsGridLayout]
 })

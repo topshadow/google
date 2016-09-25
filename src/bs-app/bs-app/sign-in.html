@@ -7,11 +7,11 @@
             <template md-tab-label>登陆</template>
             <template md-tab-content>
                 <md-card-content style="height:300px">
-                    <md-input dividerColor="primary" placeholder="用户名" maxLength="100" #nameInput style="width:100%">
-                        <md-hint align="end">{{nameInput.characterCount}}/10</md-hint>
+                    <md-input dividerColor="primary" #registerUsername placeholder="用户名" maxLength="100" [(ngModel)]="user.username" style="width:100%">
+                        <md-hint align="end">{{registerUsername.characterCount}}/10</md-hint>
                     </md-input>
-                    <md-input divideColor="accent " type="password" placeholder="密码" maxLength="100" #passwordInput style="width:100%">
-                        <md-hint align="end">{{passwordInput.characterCount}}/10</md-hint>
+                    <md-input divideColor="accent" #registerPassword  type="password" placeholder="密码" maxLength="100" [(ngModel)]="user.password" style="width:100%">
+                        <md-hint align="end">{{registerPassword.characterCount}}/10</md-hint>
                     </md-input>
                 </md-card-content>
                 <md-card-content>
@@ -38,26 +38,43 @@
             <template md-tab-label>注册</template>
             <template md-tab-content>
                 <md-card-content style="height:300px">
-                    <md-input dividerColor="primary" placeholder="用户名" maxLength="100" #nameInput style="width:100%">
-                        <md-hint align="end">6-10位长度, 当前:{{nameInput.characterCount}}/10</md-hint>
+                    <md-input (blur)="checkUserExist()" dividerColor="primary" [(ngModel)]="user.username" placeholder="用户名" maxLength="100" #nameInput style="width:100%">
+                        <md-hint color="warn" align="start">{{registerMessage}}</md-hint>
+                          <md-hint align="end">  6-10位长度, 当前:{{nameInput.characterCount}}/10</md-hint>
                     </md-input>
-                    <md-input divideColor="accent " type="password" placeholder="密码" maxLength="10" #passwordInput style="width:100%">
+                    <md-input divideColor="accent " [(ngModel)]="user.password" type="password" placeholder="密码" maxLength="10" #passwordInput style="width:100%">
                         <md-hint align="end">6-10位长度, 当前:{{passwordInput.characterCount}}/10</md-hint>
                     </md-input>
-                    <md-input divideColor="warn" type="password" placeholder="再次输入密码" maxLengh #repeatPasswordInput style="width:100%">
-                        <md-hint align="end">6-10位长度,当前:{{repeatPasswordInput.characterCount}}/10</md-hint>
+                    <md-input divideColor="warn" (blur)="checkRepeatPassword()" type="password" [(ngModel)]="user.repeatPassword" placeholder="再次输入密码" maxLengh #repeatPasswordInput style="width:100%">
+                      <md-hint align="start">{{repeatPasswordMessage}}</md-hint>
+                        <md-hint align="end" >6-10位长度,当前:{{repeatPasswordInput.characterCount}}/10</md-hint>
                     </md-input>
                 </md-card-content>
                 <md-card-content>
                     <md-grid-list cols="4">
                         <md-grid-tile colspan="3"></md-grid-tile>
-                        <md-grid-tile colspan="1"><button md-raised-button color="primary">注册</button>
+                        <md-grid-tile colspan="1"><button md-raised-button color="primary" (click)="signUp()">注册</button>
                             </md-grid-tile>
                     </md-grid-list>
                 </md-card-content>
             </template>
         </md-tab>
 
+<!-- 开发者文档-->
+<md-tab>
+  <template md-tab-label>开发者文档</template>
+  <template md-tab-content>
+
+      <md-grid-list cols="3" rowHeight="40px">
+      <md-grid-tile>你好</md-grid-tile>
+      <md-grid-tile>你好</md-grid-tile>
+      <md-grid-tile>你好</md-grid-tile>
+      <md-grid-tile>你好</md-grid-tile>
+      <md-grid-tile>你好</md-grid-tile>
+      <md-grid-tile>你好</md-grid-tile>
+    </md-grid-list>
+  </template>
+</md-tab>
 
     </md-tab-group>
 </md-card>

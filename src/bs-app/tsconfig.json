@@ -8,19 +8,14 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "noEmitOnError": true,
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "outDir": "../../dist/",
     "sourceMap": true,
     "target": "es5",
     "stripInternal": true,
     "baseUrl": "",
     "typeRoots": [
-      "./typings/modules",
-      "./typings/modules/firebase",
-      "../../node_modules/@types",
-      "../../node_modules",
-      "../../node_modules/angularfire2"
-      
+      "../../node_modules/@types"
     ],
     "paths": {
       "@angular2-material/*": [
@@ -28,7 +23,7 @@
       ]
     },
     "types": [
-      "hammerjs","firebase","angularfire2"
+      "hammerjs"
     ]
   },
   "angularCompilerOptions": {

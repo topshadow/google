@@ -13,7 +13,6 @@ export const NPM_VENDOR_FILES = [
   'hammerjs',
   'rxjs',
   'systemjs/dist',
-  'zone.js/dist',
-  'angularfire2'
+  'zone.js/dist'
 
 ];

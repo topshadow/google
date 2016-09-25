@@ -97,7 +97,7 @@ System.config({
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
     'main': 'main.js',
-    'angularfire2': { main: 'vendor/angularfire2/index.js' }
+    'core':'core/index.js'
   },
   packages: _cliSystemConfig
 });

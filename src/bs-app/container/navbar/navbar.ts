@@ -17,7 +17,7 @@ export class BsNavbar {
     openSettingMenu(event: MouseEvent) {
         if (event.button == 2) {
 
-            this.openPanel.emit({ type: BsNavbarPanel, bsNavbar: this.bsNavbar });
+            this.openPanel.emit({ type: BsNavbar, bsNavbar: this.bsNavbar });
             console.log('right click open setting menu');
 
         }
@@ -27,7 +27,7 @@ export class BsNavbar {
 
 
 /**
- * navbar 的设置面板 
+ * navbar 的设置面板
  */
 @Component({
     moduleId: module.id,

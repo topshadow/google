@@ -1,5 +1,5 @@
 <md-sidenav-layout class="demo-root" fullscreen (openPagePanelEvent)="start.open()">
-    <md-sidenav #start mode="push" class="left-panel">
+    <md-sidenav #start mode="side" class="left-panel">
         <md-card-content>
             <md-grid-list cols="2">
                 <!--第一行-->
@@ -84,7 +84,7 @@
 
     <!--以下是各个操作组件的面板,在右侧开启,标签头部不会显示-->
     <button (click)="rightPanel.toggle();" id="rightPanelButton" hidden></button>
-    <md-sidenav #rightPanel model="push" align="end" id="test">
+    <md-sidenav #rightPanel mode="side" align="end" id="test">
         <md-tab-group [selectedIndex]="selectedPanelIndex">
             <md-tab>
                 <template md-tab-label class="hidden">栅格布局</template>
