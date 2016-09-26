@@ -17,7 +17,7 @@ import { BsGridLayoutPanel } from './container/grid-layout/grid-layout-panel';
 import { BsListLayout } from './container/list-layout/list-layout';
 import { BsListLayoutPanel } from './container/list-layout/list-layout-panel';
 import { BsNavbar, BsNavbarPanel } from './container/navbar/navbar';
-import { UserService, DocService } from 'core';
+import { UserService, DocService, AutoInjectStyle } from 'core';
 
 
 @NgModule({
@@ -43,7 +43,7 @@ import { UserService, DocService } from 'core';
         BsListLayout,
         BsListLayoutPanel,
         BsNavbar,
-        BsNavbarPanel
+        BsNavbarPanel, AutoInjectStyle
     ],
     providers: [UserService, DocService],
     bootstrap: [DemoApp],

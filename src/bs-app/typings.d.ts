@@ -50,3 +50,11 @@ interface Panel {
 interface Navbar {
     menuList: string[];
 }
+
+
+
+
+interface Styles{
+    color:string;//字体颜色
+    backgroundColor:string;//背景颜色
+}

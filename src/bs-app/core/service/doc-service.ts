@@ -4,7 +4,7 @@ import { firebase } from 'core';
 export class DocService {
     firebase = firebase;
 
-    addDoc(doc:Doc) {
+    addDoc(doc: Doc) {
         this.firebase.database().ref('docs').push(doc);
     }
 

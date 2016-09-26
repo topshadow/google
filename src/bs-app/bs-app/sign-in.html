@@ -71,7 +71,7 @@
       <md-grid-tile>简介</md-grid-tile>
       <md-grid-tile>删除</md-grid-tile>
       <div *ngFor="let doc of docs">
-          <md-grid-tile>{{doc.title}}</md-grid-tile>
+          <md-grid-tile [auto-inject-style]="{color:'red'}" >{{doc.title}}</md-grid-tile>
           <md-grid-tile><a href="{{doc.url}}" target="_blank">{{doc.url}}</a></md-grid-tile>
           <md-grid-tile>{{doc.summary}}</md-grid-tile>
           <md-grid-tile (click)="deleteDoc(doc)">删除</md-grid-tile>
