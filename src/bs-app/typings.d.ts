@@ -27,8 +27,12 @@ interface Col {
 
 interface GridLayout {
     cols: Col[];
+}
 
 
+interface Styles{
+    color?:string;//字体颜色
+    backgroundColor?:string;//背景颜色
 }
 
 /**
@@ -48,13 +52,9 @@ interface Panel {
 }
 
 interface Navbar {
-    menuList: string[];
+    styles?:Styles;
+    menuList?: string[];
 }
 
 
 
-
-interface Styles{
-    color:string;//字体颜色
-    backgroundColor:string;//背景颜色
-}

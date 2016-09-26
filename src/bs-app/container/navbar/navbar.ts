@@ -9,17 +9,15 @@ import { Component, Output, EventEmitter, Input, HostListener } from '@angular/c
     templateUrl: './navbar.html'
 })
 export class BsNavbar {
-    @Input() bsNavbar: Navbar = { menuList: [] };
+    @Input() bsNavbar: Navbar = { menuList: [], styles: { backgroundColor: 'red', color: 'red' } };
 
     @Output() openPanel = new EventEmitter();
 
     @HostListener('mousedown', ['$event'])
     openSettingMenu(event: MouseEvent) {
         if (event.button == 2) {
-
             this.openPanel.emit({ type: BsNavbar, bsNavbar: this.bsNavbar });
             console.log('right click open setting menu');
-
         }
         event.preventDefault();
     }

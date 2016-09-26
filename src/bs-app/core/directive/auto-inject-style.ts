@@ -11,7 +11,10 @@ export class AutoInjectStyle implements OnInit {
 
     }
     ngOnInit() {
-        this.render.setElementStyle(this.el.nativeElement, 'color', this.styles.color);
+        console.log(this.styles);
+        Object.keys(this.styles).forEach((item, index, array) => {
+            this.render.setElementStyle(this.el.nativeElement, item, this.styles[item]);
+        });
     }
 
 }
