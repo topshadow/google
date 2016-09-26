@@ -1,4 +1,5 @@
 import { Component, Output, EventEmitter, Input, HostListener } from '@angular/core';
+import {WebsiteService} from 'core';
 
 
 
@@ -17,6 +18,14 @@ export class BsNavbar {
 
     @Output() openPanel = new EventEmitter();
 
+    constructor(){
+      console.log(this.bsNavbar);
+    }
+
+    selectFile(){
+      console.log('select file');
+    }
+    //右键禁用鼠标,弹出数据操作面板
     @HostListener('mousedown', ['$event'])
     openSettingMenu(event: MouseEvent) {
         if (event.button == 2) {
@@ -38,4 +47,10 @@ export class BsNavbar {
 })
 export class BsNavbarPanel {
     @Input() bsNavbar: Navbar;
+
+    constructor(public websiteService:WebsiteService){}
+
+    selectBackgroundImage(file){
+        this.websiteService.upload(file);
+    }
 }

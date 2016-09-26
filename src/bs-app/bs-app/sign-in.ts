@@ -68,7 +68,7 @@ export class SignIn implements OnInit {
       if (serverUser.password == this.user.password) {
         this.user = serverUser;
         this.userService.user = serverUser;
-        // 用户没有数据则使用默认的网站数据 
+        // 用户没有数据则使用默认的网站数据
         this.userService.user.website = serverUser.website ? serverUser.website : defaultWebsite;
         this.signDialog();
       } else {
@@ -83,7 +83,7 @@ export class SignIn implements OnInit {
 
     this.dialogRef = this.dialog.open(ChooseSignInWayDialog, config);
 
-    this.dialogRef.afterClosed().subscribe(result => {
+    this.dialogRef.afterClosed().subscribe(() => {
       // this.lastCloseResult = result;
       this.dialogRef = null;
     });
@@ -124,7 +124,7 @@ export class SignIn implements OnInit {
 @Component({
   selector: 'choose-sign-in-way-dialog',
   template: `
-  <button md-raised-button color="primary" (click)="editLogin()">编辑模式</button>
+  <button md-raised-button color="primary" (click)="editLogin();mdDialogRef.close()">编辑模式</button>
   <button md-raised-button color="accent">预览模式</button>
     `
 })
