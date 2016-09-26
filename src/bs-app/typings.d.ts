@@ -8,6 +8,11 @@ interface User{
   repeatPassword?:string;
 }
 
+interface Doc{
+    title:string;
+    url:string;
+    summary:string;
+}
 
 interface Button {
     type: 'md-button' | 'md-raised-button' | 'md-fab';
