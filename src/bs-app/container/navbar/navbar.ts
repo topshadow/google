@@ -9,7 +9,11 @@ import { Component, Output, EventEmitter, Input, HostListener } from '@angular/c
     templateUrl: './navbar.html'
 })
 export class BsNavbar {
-    @Input() bsNavbar: Navbar = { menuList: [], styles: { backgroundColor: 'red', color: 'red' } };
+    @Input() bsNavbar: Navbar = {
+        type: 'navbar',
+        menuList: [],
+        styles: { backgroundColor: 'red', color: 'red' }
+    };
 
     @Output() openPanel = new EventEmitter();
 

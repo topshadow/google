@@ -2,16 +2,30 @@
 declare var require: any;
 declare var module: any;
 
-interface User{
-  username:string;
-  password:string;
-  repeatPassword?:string;
+interface Part {
+    type: string;
 }
 
-interface Doc{
-    title:string;
-    url:string;
-    summary:string;
+interface Page {
+    parts: Part[];
+    path: string;
+}
+
+interface Website {
+    pages: Page[]
+}
+
+interface User {
+    username: string;
+    password: string;
+    repeatPassword?: string;
+    website?: Website
+}
+
+interface Doc {
+    title: string;
+    url: string;
+    summary: string;
 }
 
 interface Button {
@@ -30,9 +44,9 @@ interface GridLayout {
 }
 
 
-interface Styles{
-    color?:string;//字体颜色
-    backgroundColor?:string;//背景颜色
+interface Styles {
+    color?: string;//字体颜色
+    backgroundColor?: string;//背景颜色
 }
 
 /**
@@ -47,14 +61,18 @@ interface Styles{
  */
 interface Panel {
     type: KeyType;
-    data?:any;
+    data?: any;
 
 }
 
 interface Navbar {
-    styles?:Styles;
+    type: 'navbar'
+    styles?: Styles;
     menuList?: string[];
 }
 
 
 
+interface Part {
+    type: string;
+}

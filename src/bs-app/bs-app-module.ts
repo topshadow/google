@@ -7,8 +7,8 @@ import { MaterialModule } from '@angular2-material/all';
 
 import { BS_APP_ROUTES } from './bs-app/routes';
 import { Home, DemoApp } from './bs-app/bs-app';
-import { SignIn } from './bs-app/sign-in';
-import { Page, WelcomeDialog } from './bs-app/page';
+import { SignIn, ChooseSignInWayDialog } from './bs-app/sign-in';
+import { EveryPage, WelcomeDialog } from './bs-app/page';
 import { ButtonPanel } from './panel/button-panel/button-panel';
 import { BsButton } from './panel/button-panel/bs-button';
 import { BsGridLayout } from './container/grid-layout/grid-layout';
@@ -17,7 +17,7 @@ import { BsGridLayoutPanel } from './container/grid-layout/grid-layout-panel';
 import { BsListLayout } from './container/list-layout/list-layout';
 import { BsListLayoutPanel } from './container/list-layout/list-layout-panel';
 import { BsNavbar, BsNavbarPanel } from './container/navbar/navbar';
-import { UserService, DocService, AutoInjectStyle } from 'core';
+import { UserService, DocService, AutoInjectStyle, WebsiteService } from 'core';
 
 
 @NgModule({
@@ -28,13 +28,12 @@ import { UserService, DocService, AutoInjectStyle } from 'core';
         RouterModule,
         RouterModule.forRoot(BS_APP_ROUTES),
         MaterialModule.forRoot(),
-        // AngularFireModule.initializeApp(firebaseConfig)
     ],
     declarations: [
         Home,
         DemoApp,
         SignIn,
-        Page,
+        EveryPage,
         ButtonPanel,
         BsButton,
         WelcomeDialog,
@@ -43,18 +42,16 @@ import { UserService, DocService, AutoInjectStyle } from 'core';
         BsListLayout,
         BsListLayoutPanel,
         BsNavbar,
-        BsNavbarPanel, AutoInjectStyle
+        BsNavbarPanel, AutoInjectStyle, ChooseSignInWayDialog
     ],
-    providers: [UserService, DocService],
+    providers: [UserService, DocService, WebsiteService],
     bootstrap: [DemoApp],
-    entryComponents: [WelcomeDialog, Page, BsGridLayout]
+    entryComponents: [WelcomeDialog, ChooseSignInWayDialog, EveryPage, BsGridLayout]
 })
 export class BsAppModule {
     constructor(private appRef: ApplicationRef,
-        public resolver: ComponentFactoryResolver
-        // af: AngularFire
-    ) {
-        // console.log(af);
+        public resolver: ComponentFactoryResolver) {
+
     }
 
     ngDoBootstrap() {

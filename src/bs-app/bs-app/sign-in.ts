@@ -1,7 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService, DocService } from 'core';
-import { firebase } from 'core';
+
+import { firebase, defaultWebsite, UserService, DocService } from 'core';
+import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular2-material/dialog';
+
+
+
 
 @Component({
   moduleId: module.id,
@@ -12,37 +16,41 @@ export class SignIn implements OnInit {
   username: string = '';
   password: string = '';
   autoSignIn: boolean = false;
-  user: User;
+  user: any;
   firebase: any;
   canRegister: boolean;
   registerMessage: string;
   repeatPasswordMessage: string;
   docs: Doc[] = [];
   doc: any = {};
+  // 对话框
+  dialogRef: MdDialogRef<ChooseSignInWayDialog>;
 
   constructor(private router: Router,
     private userService: UserService,
-    private docService: DocService) {
+    private docService: DocService,
+    private dialog: MdDialog,
+    private viewContainerRef: ViewContainerRef
+  ) {
     this.user = { username: '', password: '', repeatPassword: '' };
-
   }
 
   ngOnInit() {
     var docsRef = firebase.database().ref('docs');
     docsRef.on('value', (snapshot) => { this.docs = this.objectToArray(snapshot.val()); });
   }
-
+  /**
+   * 对象转数组,可以放入core库中
+   */
   objectToArray(obj: Object) {
     let result = new Array();
     Object.keys(obj).forEach((item, index, array) => {
       result[index] = obj[item];
     });
-    console.log(result);
     return result;
   }
 
   checkUserExist() {
-
     this.userService.getUserByUsername(this.user.username, (rtn) => {
       if (rtn) {
         this.canRegister = false;
@@ -56,17 +64,31 @@ export class SignIn implements OnInit {
 
 
   signIn() {
-    this.userService.getUserByUsername(this.user.username, (user) => {
-      if (user.password == this.user.password) {
-        this.router.navigateByUrl('/page');
-        this.user = user;
+    this.userService.getUserByUsername(this.user.username, (serverUser: any) => {
+      if (serverUser.password == this.user.password) {
+        this.user = serverUser;
+        this.userService.user = serverUser;
+        // 用户没有数据则使用默认的网站数据 
+        this.userService.user.website = serverUser.website ? serverUser.website : defaultWebsite;
+        this.signDialog();
       } else {
         alert('用户名或者密码错误');
       }
     });
-
-
   }
+
+  signDialog() {
+    let config = new MdDialogConfig();
+    config.viewContainerRef = this.viewContainerRef;
+
+    this.dialogRef = this.dialog.open(ChooseSignInWayDialog, config);
+
+    this.dialogRef.afterClosed().subscribe(result => {
+      // this.lastCloseResult = result;
+      this.dialogRef = null;
+    });
+  }
+
 
 
   signUp() {
@@ -95,5 +117,41 @@ export class SignIn implements OnInit {
     firebase.database().ref('docs').set(this.docs);
   }
 
+
+}
+
+
+@Component({
+  selector: 'choose-sign-in-way-dialog',
+  template: `
+  <button md-raised-button color="primary" (click)="editLogin()">编辑模式</button>
+  <button md-raised-button color="accent">预览模式</button>
+    `
+})
+export class ChooseSignInWayDialog {
+  constructor(private mdDialogRef: MdDialogRef<ChooseSignInWayDialog>,
+    private router: Router,
+    private userService: UserService) { }
+
+  // 编辑模式进入
+  editLogin() {
+    window['isEdit'] = true;
+    this.router.navigate(['index',
+      {
+        username: this.userService.user.username,
+        password: this.userService.user.password,
+        edit: true
+      }]);
+  }
+
+  // 预览模式进入
+  previewLogin() {
+    window['isEdit'] = false;
+    this.router.navigate(['index', {
+      username: this.userService.user.username,
+      password: this.userService.user.password,
+      edit: false
+    }]);
+  }
 
 }

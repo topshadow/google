@@ -1,17 +1,21 @@
 import {
-    Component, OnInit,
-    AfterViewInit, ViewContainerRef, Renderer, ElementRef
+    Component,
+    OnInit,
+    AfterViewInit,
+    ViewContainerRef,
+    Renderer,
+    ElementRef
 } from '@angular/core';
-// import {Render} from '@angular/c';
-import { website, Website } from '../website';
-// import { BsGridLayout } from '../container/grid-layout/grid-layout';
+import { ActivatedRoute, Params } from '@angular/router';
+
+
 import { BsGridLayoutPanel } from '../container/grid-layout/grid-layout-panel';
 import { BsListLayoutPanel } from '../container/list-layout/list-layout-panel';
 import { BsNavbar } from '../container/navbar/navbar';
 
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular2-material/dialog';
 
-import { Panels } from '../core/index';
+import { Panels, WebsiteService, defaultNavbar } from 'core';
 
 
 /**
@@ -24,11 +28,9 @@ import { Panels } from '../core/index';
     styleUrls: ['./page.css']
 
 })
-export class Page implements OnInit, AfterViewInit {
-    website: Website;
+export class EveryPage implements OnInit, AfterViewInit {
+    page: Page;
     wellcomeDialogRef: MdDialogRef<WelcomeDialog>;
-    lastCloseResult: string;
-
     selectedPanelIndex: number;
     selectedPanelData: any;
 
@@ -39,24 +41,36 @@ export class Page implements OnInit, AfterViewInit {
         cols: [{ colspan: 1, component: '容器' }, { colspan: 2, component: '容器2' }]
     };
 
+    addNavbar() {
+        this.websiteService.addPart(this.page.path, defaultNavbar);
+    }
+
+    savePage() {
+        this.websiteService.userService.saveUser(this.websiteService.userService.user);
+    }
+
 
     ngAfterViewInit() {
         this.openWelcomeDialog();
-
     }
 
     openWelcomeDialog() {
         var config = new MdDialogConfig();
         config.viewContainerRef = this.viewContainerRef;
         this.wellcomeDialogRef = this.dialog.open(WelcomeDialog, config);
-
     }
 
     constructor(public dialog: MdDialog,
         public viewContainerRef: ViewContainerRef,
-        public el: ElementRef
+        public el: ElementRef,
+        public websiteService: WebsiteService,
+        public route: ActivatedRoute
     ) {
-        this.website = website;
+        this.route.params.forEach((params: Params) => {
+            var path = params['path'];
+            this.page = this.websiteService.findPage(path);
+            console.log(`当前页面是${path},数据是${JSON.stringify(this.page)}`);
+        });
         this.gridLayout = this.gridLayout ? this.gridLayout : this.defaultGridLayout;
     }
 
@@ -78,16 +92,14 @@ export class Page implements OnInit, AfterViewInit {
                 this.selectedPanelData = event.bsNavbar;
                 this.toggleRightPanel();
                 break;
-
         }
     }
 
     ngOnInit() {
         // 操作菜单
         document.addEventListener('keyup', (event: KeyboardEvent) => {
-            console.log(event);
-            switch (event.key) {
-                case 'Control':
+            switch (event.code) {
+                case 'ControlLeft':
                     this.toggleLeftPanel();
                     break;
                 case 'Alt':
