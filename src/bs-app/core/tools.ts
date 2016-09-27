@@ -78,3 +78,13 @@ export var defaultWebsite: Website = {
   }]
 };
 
+/**
+ * 对象转数组,可以放入core库中
+ */
+export function objectToArray(obj: Object) {
+  let result = new Array();
+  Object.keys(obj).forEach((item, index, array) => {
+    result[index] = obj[item];
+  });
+  return result;
+}

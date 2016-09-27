@@ -16,8 +16,8 @@ import { BsGridLayoutPanel } from './container/grid-layout/grid-layout-panel';
 
 import { BsListLayout } from './container/list-layout/list-layout';
 import { BsListLayoutPanel } from './container/list-layout/list-layout-panel';
-import { BsNavbar, BsNavbarPanel } from './container/navbar/navbar';
-import { UserService, DocService, AutoInjectStyle, WebsiteService } from 'core';
+import { BsNavbar, BsNavbarPanel, NavbarPublishPanel } from './container/navbar/navbar';
+import { UserService, DocService, AutoInjectStyle, WebsiteService, PublishService } from 'core';
 
 
 @NgModule({
@@ -42,11 +42,17 @@ import { UserService, DocService, AutoInjectStyle, WebsiteService } from 'core';
         BsListLayout,
         BsListLayoutPanel,
         BsNavbar,
-        BsNavbarPanel, AutoInjectStyle, ChooseSignInWayDialog
+        BsNavbarPanel, AutoInjectStyle, ChooseSignInWayDialog,
+        NavbarPublishPanel
     ],
-    providers: [UserService, DocService, WebsiteService],
+    providers: [UserService, DocService, WebsiteService, PublishService],
     bootstrap: [DemoApp],
-    entryComponents: [WelcomeDialog, ChooseSignInWayDialog, EveryPage, BsGridLayout]
+    entryComponents: [
+        WelcomeDialog,
+        ChooseSignInWayDialog,
+        NavbarPublishPanel,
+        EveryPage,
+        BsGridLayout]
 })
 export class BsAppModule {
     constructor(private appRef: ApplicationRef,

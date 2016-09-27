@@ -1,7 +1,11 @@
 <md-card>
     <md-toolbar>设置导航</md-toolbar>
     <md-card-content>
-        设置导航风格
+        <md-grid-list cols='2' [style.background]="'primary'" >
+            <md-grid-tile>收藏</md-grid-tile><md-grid-tile (click)="publishNavbar()">发布</md-grid-tile>
+            <md-grid-tile colspan="2"><button md-raised-button color="accent" width="100%" (click)="openNavbarPublishPanel()">模板库</button></md-grid-tile>
+            <md-grid-tile>我的收藏</md-grid-tile><md-grid-tile>我的发布</md-grid-tile>
+        </md-grid-list>
     </md-card-content>
     <input type="file" (change)="selectBackgroundImage(imageSelectInput.files[0])" accept="image/*" #imageSelectInput />
 </md-card>

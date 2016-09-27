@@ -79,14 +79,13 @@
         <div *ngFor="let part of page.parts">
             <div [ngSwitch]="part.type">
                 <div *ngSwitchCase=" 'navbar' ">
-                    <bs-navbar [bsNavbar]="part"></bs-navbar>
+                    <bs-navbar [bsNavbar]="part" (openPanel)="openPanel($event)" ></bs-navbar>
                 </div>
                 <div *ngSwitchDefault>output2</div>
             </div>
         </div>
     
 
-    <bs-navbar (openPanel)="openPanel($event)"></bs-navbar>
     <bs-grid-layout (openPanel)="openPanel($event)" [gridLayout]="gridLayout"></bs-grid-layout>
     <bs-list-layout (openPanel)="openPanel($event)"></bs-list-layout>
     <div #root="$implicit" dir="ltr" class="demo-content">
@@ -112,8 +111,8 @@
             </md-tab>
             <md-tab>
                 <template md-tab-label>导航</template>
-                <template md-tab-content>导航的内容快
-                    <bs-navbar-panel></bs-navbar-panel>
+                <template md-tab-content>
+                    <bs-navbar-panel [bsNavbar]="selectedPanelData"></bs-navbar-panel>
                 </template>
             </md-tab>
             <md-tab>

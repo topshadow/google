@@ -9,7 +9,7 @@ export var defaultNavbar: Navbar = {
 @Injectable()
 export class WebsiteService {
     firebase: any = firebase;
-    storageRef =firebase.storage().ref();
+    storageRef = firebase.storage().ref();
     public userService: UserService = new UserService();
     constructor() { }
 
@@ -26,17 +26,23 @@ export class WebsiteService {
             .find(page => { return page.path == path; });
     }
 
+
     /**
-    上传图片
-    
-    */
-    upload(file:File){
-      var metadata={   'contentType': file.type};
-      this.storageRef.child('images/'+file.name).put(file,metadata).then((snapshot)=>{
-        console.log('Uploaded', snapshot.totalBytes, 'bytes.');
- console.log(snapshot.metadata);
- var url = snapshot.metadata.downloadURLs[0];
- console.log('File available at', url);
-      });
+     * 上传图片接口
+     * 使用方法
+     * var file = document.getElementById('selectFileInput').files[0];
+     * WebsiteService.upload(file);
+     */
+    upload(file: File): Promise<string> {
+        var metadata = { 'contentType': file.type };
+        return this.storageRef.child('images/' + file.name).put(file, metadata).then((snapshot) => {
+            console.log('Uploaded', snapshot.totalBytes, 'bytes.');
+            console.log(snapshot.metadata);
+            var url = snapshot.metadata.downloadURLs[0];
+            console.log('File available at', url);
+            return url;
+        });
     }
+
 }
+

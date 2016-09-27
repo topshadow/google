@@ -68,7 +68,8 @@ interface Panel {
 interface Navbar {
     type: 'navbar'
     styles?: Styles;
-    menuList?: string[];
+    data?: any;
+    publishInfo?: any;//发布者
 }
 
 

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { firebase, defaultWebsite, UserService, DocService } from 'core';
+import { firebase, defaultWebsite, UserService, DocService,objectToArray } from 'core';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular2-material/dialog';
 
 
@@ -37,17 +37,7 @@ export class SignIn implements OnInit {
 
   ngOnInit() {
     var docsRef = firebase.database().ref('docs');
-    docsRef.on('value', (snapshot) => { this.docs = this.objectToArray(snapshot.val()); });
-  }
-  /**
-   * 对象转数组,可以放入core库中
-   */
-  objectToArray(obj: Object) {
-    let result = new Array();
-    Object.keys(obj).forEach((item, index, array) => {
-      result[index] = obj[item];
-    });
-    return result;
+    docsRef.on('value', (snapshot) => { this.docs = objectToArray(snapshot.val()); });
   }
 
   checkUserExist() {
