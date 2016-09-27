@@ -49,17 +49,17 @@ export class BsGridLayout {
         // this.gridLayout.cols.
     }
 
-    @HostListener('mouseenter', ['$evnet'])
+    @HostListener('mouseenter', ['$event'])
     overBorder() {
         this.render.setElementStyle(
-            this.el.nativeElement.querySelector('md-grid-list'),
+            this.el.nativeElement,
             'border', '2px solid blue');
     }
 
-    @HostListener('mouseleave', ['$evnet'])
+    @HostListener('mouseleave', ['$event'])
     noneBorder() {
         this.render.setElementStyle(
-            this.el.nativeElement.querySelector('md-grid-list'),
+            this.el.nativeElement ,
             'border', 'none');
     }
 

@@ -12,7 +12,7 @@ import { EveryPage, WelcomeDialog } from './bs-app/page';
 import { ButtonPanel } from './panel/button-panel/button-panel';
 import { BsButton } from './panel/button-panel/bs-button';
 import { BsGridLayout } from './container/grid-layout/grid-layout';
-import { BsGridLayoutPanel } from './container/grid-layout/grid-layout-panel';
+import { BsGridLayoutPanel, ProductList, ProductDetail } from './container/index';
 
 import { BsListLayout } from './container/list-layout/list-layout';
 import { BsListLayoutPanel } from './container/list-layout/list-layout-panel';
@@ -43,7 +43,7 @@ import { UserService, DocService, AutoInjectStyle, WebsiteService, PublishServic
         BsListLayoutPanel,
         BsNavbar,
         BsNavbarPanel, AutoInjectStyle, ChooseSignInWayDialog,
-        NavbarPublishPanel
+        NavbarPublishPanel, ProductList, ProductDetail
     ],
     providers: [UserService, DocService, WebsiteService, PublishService],
     bootstrap: [DemoApp],
@@ -56,9 +56,7 @@ import { UserService, DocService, AutoInjectStyle, WebsiteService, PublishServic
 })
 export class BsAppModule {
     constructor(private appRef: ApplicationRef,
-        public resolver: ComponentFactoryResolver) {
-
-    }
+        public resolver: ComponentFactoryResolver) { }
 
     ngDoBootstrap() {
         this.appRef.bootstrap(DemoApp);
