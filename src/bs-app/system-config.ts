@@ -97,7 +97,8 @@ System.config({
     '@angular': 'vendor/@angular',
     'rxjs': 'vendor/rxjs',
     'main': 'main.js',
-    'core':'core/index.js'
+    'core': 'core/index.js',
+    'container': 'container/index.js'
   },
   packages: _cliSystemConfig
 });

@@ -4,8 +4,23 @@
         <md-card-title>商品/产品名称</md-card-title>
         <md-card-subtitle>产品介绍</md-card-subtitle>
     </md-card-header>
-    <img md-card-image src="http://www.shop.philips.com.cn/resources/2016/8/10/14708179339352406.jpg" />、
+    <img md-card-image src="" style="width:70%" />
     <md-card-content>
-        产品的其他图片
+        <md-tab-group>
+            <md-tab>
+                <template md-tab-label>商品描述</template>
+                <template md-tab-content>
+                    <img md-card-image src="http://www.shop.philips.com.cn/resources/2016/8/10/14708179339352406.jpg">
+                </template>
+            </md-tab>
+            <md-tab>
+                <template md-tab-label>用户评价</template>
+                <template md-tab-content>用户的评价</template>
+            </md-tab>
+            <md-tab>
+                <template md-tab-label>购物需知</template>
+                <template md-tab-content>购物需知</template>
+            </md-tab>
+        </md-tab-group>
     </md-card-content>
 </md-card>

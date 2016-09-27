@@ -11,13 +11,28 @@ import { SignIn, ChooseSignInWayDialog } from './bs-app/sign-in';
 import { EveryPage, WelcomeDialog } from './bs-app/page';
 import { ButtonPanel } from './panel/button-panel/button-panel';
 import { BsButton } from './panel/button-panel/bs-button';
-import { BsGridLayout } from './container/grid-layout/grid-layout';
-import { BsGridLayoutPanel, ProductList, ProductDetail } from './container/index';
 
-import { BsListLayout } from './container/list-layout/list-layout';
-import { BsListLayoutPanel } from './container/list-layout/list-layout-panel';
-import { BsNavbar, BsNavbarPanel, NavbarPublishPanel } from './container/navbar/navbar';
-import { UserService, DocService, AutoInjectStyle, WebsiteService, PublishService } from 'core';
+
+import {
+    BsNavbar,
+    BsNavbarPanel,
+    NavbarPublishPanel,
+    BsListLayout,
+    BsListLayoutPanel,
+    BsGridLayout,
+    BsGridLayoutPanel
+    BsProductList,
+    BsProductDetail,
+    BsToolbar
+} from 'container';
+import {
+    UserService,
+    DocService,
+    AutoInjectStyle,
+    WebsiteService,
+    PublishService,
+    AutoOpenPanel
+} from 'core';
 
 
 @NgModule({
@@ -42,8 +57,14 @@ import { UserService, DocService, AutoInjectStyle, WebsiteService, PublishServic
         BsListLayout,
         BsListLayoutPanel,
         BsNavbar,
-        BsNavbarPanel, AutoInjectStyle, ChooseSignInWayDialog,
-        NavbarPublishPanel, ProductList, ProductDetail
+        BsNavbarPanel,
+        AutoInjectStyle,
+        ChooseSignInWayDialog,
+        NavbarPublishPanel,
+        BsProductList,
+        BsProductDetail,
+        BsToolbar,
+        AutoOpenPanel
     ],
     providers: [UserService, DocService, WebsiteService, PublishService],
     bootstrap: [DemoApp],

@@ -79,12 +79,13 @@
         <div *ngFor="let part of page.parts">
             <div [ngSwitch]="part.type">
                 <div *ngSwitchCase=" 'navbar' ">
-                    <bs-navbar [bsNavbar]="part" (openPanel)="openPanel($event)" ></bs-navbar>
+                    <bs-navbar [bsNavbar]="part"  [auto-open-panel]="{selectedPanelIndex:panels.BsNavbar,data:part}" (openPanel)="openPanelByDirective($event)" ></bs-navbar>
                 </div>
                 <div *ngSwitchDefault>output2</div>
             </div>
         </div>
-        <product-list></product-list>
+        <product-list [auto-open-panel]="{selectedPanelIndex:panels.BsProductList,data:{name:'yangjie'}}" (openPanel)="openPanel($event)" ></product-list>
+        <bs-toolbar></bs-toolbar>
     
 
     <bs-grid-layout (openPanel)="openPanel($event)" [gridLayout]="gridLayout"></bs-grid-layout>

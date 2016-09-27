@@ -5,7 +5,8 @@ import { Injectable } from '@angular/core';
 export enum Panels {
   BsGridLayoutPanel = 0,
   BsListLayoutPanel = 1,
-  BsNavbar = 2
+  BsNavbar = 2,
+  BsProductList = 3
 }
 
 

@@ -9,9 +9,8 @@ import {
 import { ActivatedRoute, Params } from '@angular/router';
 
 
-import { BsGridLayoutPanel } from '../container/grid-layout/grid-layout-panel';
-import { BsListLayoutPanel } from '../container/list-layout/list-layout-panel';
-import { BsNavbar } from '../container/navbar/navbar';
+
+import { BsNavbar, BsGridLayoutPanel, BsListLayoutPanel, BsProductList } from 'container';
 
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular2-material/dialog';
 
@@ -29,6 +28,7 @@ import { Panels, WebsiteService, defaultNavbar } from 'core';
 
 })
 export class EveryPage implements OnInit, AfterViewInit {
+    panels = Panels;
     page: Page;
     wellcomeDialogRef: MdDialogRef<WelcomeDialog>;
     selectedPanelIndex: number;
@@ -76,23 +76,9 @@ export class EveryPage implements OnInit, AfterViewInit {
 
     openPanel(event: any) {
         console.log(event);
-        switch (event.type) {
-            case BsGridLayoutPanel:
-                this.selectedPanelIndex = Panels.BsGridLayoutPanel;
-                this.selectedPanelData = event.gridLayout;
-                this.toggleRightPanel();
-                break;
-            case BsListLayoutPanel:
-                this.selectedPanelIndex = Panels.BsListLayoutPanel;
-                this.selectedPanelData = event.listLayout;
-                this.toggleRightPanel();
-                break;
-            case BsNavbar:
-                this.selectedPanelIndex = Panels.BsNavbar;
-                this.selectedPanelData = event.bsNavbar;
-                this.toggleRightPanel();
-                break;
-        }
+        this.selectedPanelIndex = event.selectedPanelIndex;
+        this.selectedPanelData = event.data;
+        this.toggleRightPanel();
     }
 
     ngOnInit() {
