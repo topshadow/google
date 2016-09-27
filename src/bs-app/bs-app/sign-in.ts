@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { firebase, defaultWebsite, UserService, DocService,objectToArray } from 'core';
+import { firebase, defaultWebsite, UserService, DocService, objectToArray } from 'core';
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular2-material/dialog';
 
 
@@ -30,7 +30,7 @@ export class SignIn implements OnInit {
     private userService: UserService,
     private docService: DocService,
     private dialog: MdDialog,
-    private viewContainerRef: ViewContainerRef
+     public viewContainerRef: ViewContainerRef
   ) {
     this.user = { username: '', password: '', repeatPassword: '' };
   }
@@ -91,8 +91,6 @@ export class SignIn implements OnInit {
   checkRepeatPassword() {
     if (this.user.password != this.user.repeatPassword) {
       this.repeatPasswordMessage = '两次输入的密码不同';
-
-
       return false;
     }
     this.repeatPasswordMessage = '';
@@ -114,7 +112,7 @@ export class SignIn implements OnInit {
 @Component({
   selector: 'choose-sign-in-way-dialog',
   template: `
-  <button md-raised-button color="primary" (click)="editLogin();mdDialogRef.close()">编辑模式</button>
+  <button md-raised-button color="primary" (click)="mdDialogRef.close();editLogin();">编辑模式</button>
   <button md-raised-button color="accent">预览模式</button>
     `
 })

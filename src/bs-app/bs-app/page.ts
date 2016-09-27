@@ -51,7 +51,7 @@ export class EveryPage implements OnInit, AfterViewInit {
 
 
     ngAfterViewInit() {
-        this.openWelcomeDialog();
+        setTimeout(this.openWelcomeDialog(), 5000);
     }
 
     openWelcomeDialog() {

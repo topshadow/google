@@ -47,6 +47,7 @@ interface GridLayout {
 interface Styles {
     color?: string;//字体颜色
     backgroundColor?: string;//背景颜色
+    fontSize?:number;
 }
 
 /**

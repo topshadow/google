@@ -78,9 +78,11 @@ export class BsNavbarPanel {
         this.publishPanel.afterClosed().subscribe(() => {
             console.log('关闭发布面板');
         });
-
     }
 
+    logStyle() {
+        console.log(this.bsNavbar.styles);
+    }
 }
 
 
@@ -99,7 +101,6 @@ export class NavbarPublishPanel implements OnInit {
         private publishService: PublishService) {
     }
     ngOnInit() {
-
         this.publishService.getNavbarList((navbarList) => {
             this.navbars = navbarList;
             console.log(this.navbars);
