@@ -1,0 +1,76 @@
+#main-slider{
+    position:relative;
+    .carousel h1 {color:#fff;}
+    .carousel h2 {color:#fff;}
+    .carousel .btn-slide {
+        padding: 8px 20px;
+    background: #c52d2f;
+    color: #fff;
+    border-radius: 4px;
+    margin-top: 25px;
+    display: inline-block;
+    }
+
+    //锚点
+#main-slider .carousel-indicators .active {
+    width: 20px;
+    height: 20px;
+    background-color: #c52d2f;
+    margin: 0 15px 0 0;
+    border: 1px solid #c52d2f;
+    position: relative;
+}
+
+}
+
+body{
+    color:#4e4e4e;
+line-height:22px;
+}
+
+#main-slider .carousel .item {
+    top:auto;
+    position:relative;
+}
+
+#main-slider .carousel .item:first-child {
+    top: auto;
+    position: relative;
+}
+
+
+#main-slider .carousel .item {
+    background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    left: 0!important;
+    opacity: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    display: block!important;
+    height: 730px;
+    -webkit-transition: opacity ease-in-out 500ms;
+    -moz-transition: opacity ease-in-out 500ms;
+    -o-transition: opacity ease-in-out 500ms;
+    transition: opacity ease-in-out 500ms;
+}
+
+
+#main-slider .carousel .item.active {
+    opacity: 1;
+    -webkit-transition: opacity ease-in-out 500ms;
+    -moz-transition: opacity ease-in-out 500ms;
+    -o-transition: opacity ease-in-out 500ms;
+    transition: opacity ease-in-out 500ms;
+    z-index: 1;
+}
+
+
+#main-slider .carousel .slide-margin {
+    margin-top: 140px;
+}
+
+h1{
+    color:#fff;
+}

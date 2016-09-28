@@ -10,13 +10,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 
 
-import {
-    BsNavbar,
-    BsGridLayoutPanel,
-    BsListLayoutPanel,
-    BsProductList
-} from 'container';
-
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular2-material/dialog';
 
 import { Panels, WebsiteService, defaultNavbar } from 'core';

@@ -4,7 +4,6 @@ import {
     EventEmitter,
     OnInit,
     Input,
-    HostListener,
     ViewContainerRef
 } from '@angular/core';
 import { WebsiteService, PublishService } from 'core';

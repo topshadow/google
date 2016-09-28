@@ -23,7 +23,8 @@ import {
     BsGridLayoutPanel,
     BsProductList,
     BsProductDetail,
-    BsToolbar
+    BsToolbar,
+    Carousel
 } from 'container';
 import {
     UserService,
@@ -64,7 +65,7 @@ import {
         BsProductList,
         BsProductDetail,
         BsToolbar,
-        AutoOpenPanel
+        AutoOpenPanel, Carousel
     ],
     providers: [UserService, DocService, WebsiteService, PublishService],
     bootstrap: [DemoApp],

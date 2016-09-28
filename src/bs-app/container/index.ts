@@ -8,3 +8,4 @@ export * from './product-list/product-list';
 export * from './product-detail/product-detail';
 
 export * from './toolbar/toolbar';
+export * from './carousel/carousel';

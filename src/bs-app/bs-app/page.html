@@ -76,6 +76,7 @@
         </md-toolbar>-->
 
         <!--主页的内容区-->
+        <carousel></carousel>
         <div *ngFor="let part of page.parts">
             <div [ngSwitch]="part.type">
                 <div *ngSwitchCase=" 'navbar' ">
@@ -129,7 +130,6 @@
                 <!--<template md-tab-label>其他模块</template>-->
                 <template md-tab-content>其他模块内容</template>
             </md-tab>
-
 
         </md-tab-group>
 
