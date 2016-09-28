@@ -12,7 +12,7 @@
     }
 
     //锚点
-#main-slider .carousel-indicators .active {
+ .carousel-indicators .active {
     width: 20px;
     height: 20px;
     background-color: #c52d2f;
@@ -20,7 +20,46 @@
     border: 1px solid #c52d2f;
     position: relative;
 }
+    .next{
+    right:10px;//右边按钮
+        position: absolute;
+    top: 50%;
+    background-color: #c52d2f;
+    color: #fff;
+    display: inline-block;
+    margin-top: -25px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 4px;
+    z-index: 5;
+    }
+  .carousel-indicators li {
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    margin: 0 15px 0 0;
+    position: relative;
+}
 
+    .prev {
+        left:10px;
+    position: absolute;
+    top: 50%;
+    background-color: #c52d2f;
+    color: #fff;
+    display: inline-block;
+    margin-top: -25px;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-radius: 4px;
+    z-index: 5;
+    }
 }
 
 body{

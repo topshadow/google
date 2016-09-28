@@ -10,19 +10,33 @@ export class AutoInjectStyle implements OnInit {
     constructor(private el: ElementRef, private render: Renderer) {
 
     }
-    @HostBinding('style.color')
-    get color(): string {
-        return this.styles.color;
-    }
-    @HostBinding('style.backgroundColor')
-    get backgroundColor() {
-        return this.styles.backgroundColor;
-    }
+    // @HostBinding('style.color')
+    // get color(): string {
+    //     return this.styles.color;
+    // }
+    // @HostBinding('style.backgroundColor')
+    // get backgroundColor() {
+    //     return this.styles.backgroundColor;
+    // }
 
-    @HostBinding('style.font-size')
-    get fontSize(): string {
-        return this.styles.fontSize + 'px';
-    }
+    // @HostBinding('style.font-size')
+    // get fontSize(): string {
+    //     return this.styles.fontSize + 'px';
+    // }
+
+    /**
+     * 如果不是以url(开头,则补全
+     */
+    // @HostBinding('style.backgroundImage')
+    // get backgroundImage() {
+    //     return this.styles.backgroundImage =
+    //         this.styles.backgroundImage.indexOf('url(') == -1
+    //             ? 'url(' + this.backgroundImage + ')'
+    //             : this.styles.backgroundImage;
+
+
+
+    // }
 
 
 

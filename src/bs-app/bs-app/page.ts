@@ -9,9 +9,6 @@ import {
 import { ActivatedRoute, Params } from '@angular/router';
 
 
-
-import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular2-material/dialog';
-
 import { Panels, WebsiteService, defaultNavbar } from 'core';
 
 
@@ -25,10 +22,10 @@ import { Panels, WebsiteService, defaultNavbar } from 'core';
     styleUrls: ['./page.css']
 
 })
-export class EveryPage implements OnInit, AfterViewInit {
+export class EveryPage implements OnInit {
     panels = Panels;
     page: Page;
-    wellcomeDialogRef: MdDialogRef<WelcomeDialog>;
+
     selectedData: any;
     selectedIndex: number;
 
@@ -43,23 +40,19 @@ export class EveryPage implements OnInit, AfterViewInit {
         this.websiteService.addPart(this.page.path, defaultNavbar);
     }
 
+    indexOf(el) {
+        console.log(window['$']('md-tab-group').index(el));
+    }
     savePage() {
         this.websiteService.userService.saveUser(this.websiteService.userService.user);
     }
 
 
-    ngAfterViewInit() {
-        setTimeout(this.openWelcomeDialog(), 5000);
-    }
 
-    openWelcomeDialog() {
-        var config = new MdDialogConfig();
-        config.viewContainerRef = this.viewContainerRef;
-        this.wellcomeDialogRef = this.dialog.open(WelcomeDialog, config);
-    }
 
-    constructor(public dialog: MdDialog,
-        public viewContainerRef: ViewContainerRef,
+
+
+    constructor(
         public el: ElementRef,
         public websiteService: WebsiteService,
         public route: ActivatedRoute
@@ -94,7 +87,11 @@ export class EveryPage implements OnInit, AfterViewInit {
             }
         }, false);
 
+        // 禁用鼠标右键
         document.oncontextmenu = () => { return false; };
+
+        // 打开欢迎模态框
+        window['$'](this.el.nativeElement).find('#welcomModal').modal('toggle');
         // 消除导航栏上方的空格性问题，否则右边的侧边栏的导航栏会很长
         this.el.nativeElement.querySelector('.md-tab-header').style.display = 'none';
     }
@@ -108,19 +105,3 @@ export class EveryPage implements OnInit, AfterViewInit {
 
 }
 
-
-@Component({
-    moduleId: module.id,
-    selector: 'wellcome-dialog',
-    template: `<h1>欢迎来到旅游建站系统,使用Ctrl键,呼出控制面板,使用Alt管理查看当前页面数据 </h1>`
-})
-export class WelcomeDialog implements OnInit {
-    constructor(public dialogRef: MdDialogRef<WelcomeDialog>,
-        public render: Renderer,
-        public el: ElementRef) { }
-
-    ngOnInit() {
-        this.render.setElementStyle(this.el.nativeElement, 'width', '800px');
-    }
-
-}

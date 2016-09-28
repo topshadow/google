@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewContainerRef, AfterViewInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { firebase, defaultWebsite, UserService, DocService, objectToArray } from 'core';
-import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular2-material/dialog';
 
 
 
@@ -12,7 +11,7 @@ import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular2-material/dialog
   selector: 'sign-in',
   templateUrl: './sign-in.html'
 })
-export class SignIn implements OnInit, AfterViewInit {
+export class SignIn implements OnInit {
   remeberMe: boolean = false;
   user: User;
   firebase: any;
@@ -22,34 +21,27 @@ export class SignIn implements OnInit, AfterViewInit {
   docs: Doc[] = [];
   doc: any = {};
   // 对话框
-  dialogRef: MdDialogRef<ChooseSignInWayDialog>;
 
   constructor(private router: Router,
     private userService: UserService,
     private docService: DocService,
-    private dialog: MdDialog,
-    public viewContainerRef: ViewContainerRef
+    private el: ElementRef
+
   ) {
     this.user = { username: '', password: '', repeatPassword: '' };
   }
 
   ngOnInit() {
-
     this.user.username = localStorage.getItem('username') ? localStorage.getItem('username') : '';
     this.user.password = localStorage.getItem('password') ? localStorage.getItem('password') : '';
     this.remeberMe = localStorage.getItem('remeberMe') ? true : false;
     if (this.user.username && this.user.password && this.remeberMe) {
       this.signIn();
     };
-
     var docsRef = firebase.database().ref('docs');
     docsRef.on('value', (snapshot) => { this.docs = objectToArray(snapshot.val()); });
   }
 
-  ngAfterViewInit() {
-
-
-  }
 
   checkUserExist() {
     this.userService.getUserByUsername(this.user.username, (rtn) => {
@@ -76,21 +68,15 @@ export class SignIn implements OnInit, AfterViewInit {
           localStorage.setItem('password', serverUser.password);
           localStorage.setItem('remeberMe', 'true');
         }
-        this.signDialog();
+        window['$'](this.el.nativeElement).find('.modal').modal('toggle');
       } else {
         alert('用户名或者密码错误');
       }
     });
-}
+  }
 
   signDialog() {
-    let config = new MdDialogConfig();
-    config.viewContainerRef = this.viewContainerRef;
-    this.dialogRef = this.dialog.open(ChooseSignInWayDialog, config);
-    this.dialogRef.afterClosed().subscribe(() => {
-      // this.lastCloseResult = result;
-      this.dialogRef = null;
-    });
+
   }
 
 
@@ -119,23 +105,6 @@ export class SignIn implements OnInit, AfterViewInit {
     firebase.database().ref('docs').set(this.docs);
   }
 
-
-}
-
-
-@Component({
-  selector: 'choose-sign-in-way-dialog',
-  template: `
-  <button md-raised-button color="primary" (click)="mdDialogRef.close();editLogin();">编辑模式</button>
-  <button md-raised-button color="accent">预览模式</button>
-    `
-})
-export class ChooseSignInWayDialog {
-  constructor(private mdDialogRef: MdDialogRef<ChooseSignInWayDialog>,
-    private router: Router,
-    private userService: UserService) { }
-
-  // 编辑模式进入
   editLogin() {
     window['isEdit'] = true;
     this.router.navigate(['index',
@@ -157,3 +126,4 @@ export class ChooseSignInWayDialog {
   }
 
 }
+
