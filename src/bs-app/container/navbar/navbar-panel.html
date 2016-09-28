@@ -13,7 +13,7 @@
                 <template md-tab-label>导航样式</template>
                 <template md-tab-content>
                     <md-grid-list cols="2">
-                    <md-grid-tile colspan="2">背景颜色:<input type="color" [(ngModel)]="bsNavbar.styles.backgroundColor"/> </md-grid-tile>
+                    <md-grid-tile colspan="2">背景颜色:<input type="color" [(ngModel)]="data.styles.backgroundColor"/> </md-grid-tile>
                     </md-grid-list>
                 </template>
             </md-tab>
@@ -21,7 +21,7 @@
             <md-tab>
                 <template md-tab-label>菜单样式</template>
                 <template md-tab-content>
-                    菜单字体大小<md-input [(ngModel)]="bsNavbar.styles.button.fontSize" ></md-input>
+                    菜单字体大小<md-input [(ngModel)]="data.styles.button.fontSize" ></md-input>
                 </template>
             </md-tab>
         </md-tab-group>

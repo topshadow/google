@@ -18,17 +18,17 @@ import { BsGridLayoutPanel } from './grid-layout-panel';
 })
 export class BsGridLayout {
     @Input()
-    public gridLayout: GridLayout;
+    public data: GridLayout;
 
     @Output() openPanel = new EventEmitter();
 
 
     set colsLength(length: number) {
-        this.gridLayout.cols.length = isNaN(length) ? 2 : length;
+        this.data.cols.length = isNaN(length) ? 2 : length;
     }
 
     get colsLength(): number {
-        return this.gridLayout.cols.length;
+        return this.data.cols.length;
     }
 
     @HostListener('mousedown', ['$event'])
@@ -36,7 +36,7 @@ export class BsGridLayout {
         // console.log(event);
         if (event.button == 2) {
             console.log('right click open setting menu');
-            this.openPanel.emit({ type: BsGridLayoutPanel, gridLayout: this.gridLayout });
+            this.openPanel.emit({ type: BsGridLayoutPanel, gridLayout: this.data });
         }
         event.preventDefault();
 

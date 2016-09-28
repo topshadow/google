@@ -20,7 +20,7 @@ import {
     BsListLayout,
     BsListLayoutPanel,
     BsGridLayout,
-    BsGridLayoutPanel
+    BsGridLayoutPanel,
     BsProductList,
     BsProductDetail,
     BsToolbar

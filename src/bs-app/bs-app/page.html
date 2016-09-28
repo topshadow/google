@@ -79,17 +79,17 @@
         <div *ngFor="let part of page.parts">
             <div [ngSwitch]="part.type">
                 <div *ngSwitchCase=" 'navbar' ">
-                    <bs-navbar [bsNavbar]="part"  [auto-open-panel]="{selectedPanelIndex:panels.BsNavbar,data:part}" (openPanel)="openPanelByDirective($event)" ></bs-navbar>
+                    <bs-navbar [data]="part" [auto-open-panel]="{panel:rightPanel,selectedIndex:2,data:part}" (openPanel)="openPanel($event)"   ></bs-navbar>
                 </div>
                 <div *ngSwitchDefault>output2</div>
             </div>
         </div>
-        <product-list [auto-open-panel]="{selectedPanelIndex:panels.BsProductList,data:{name:'yangjie'}}" (openPanel)="openPanel($event)" ></product-list>
-        <bs-toolbar></bs-toolbar>
+        <bs-product-list [data]="{name:'yangjie'}" [auto-open-panel]="{selectedPanelIndex:panels.BsProductList,data:{name:'yangjie'}}" (openPanel)="openPanel($event)" ></bs-product-list>
+        <!--<bs-toolbar></bs-toolbar>-->
     
 
-    <bs-grid-layout (openPanel)="openPanel($event)" [gridLayout]="gridLayout"></bs-grid-layout>
-    <bs-list-layout (openPanel)="openPanel($event)"></bs-list-layout>
+    <!--<bs-grid-layout (openPanel)="openPanel($event)" [gridLayout]="gridLayout"></bs-grid-layout>-->
+    <!--<bs-list-layout (openPanel)="openPanel($event)"></bs-list-layout>-->
     <div #root="$implicit" dir="ltr" class="demo-content">
     </div>
     </div>
@@ -97,24 +97,24 @@
     <!--以下是各个操作组件的面板,在右侧开启,标签头部不会显示-->
     <button (click)="rightPanel.toggle();" id="rightPanelButton" hidden></button>
     <md-sidenav #rightPanel mode="side" align="end" id="test">
-        <md-tab-group [selectedIndex]="selectedPanelIndex">
+        <md-tab-group [selectedIndex]="selectedIndex">
             <md-tab>
                 <template md-tab-label class="hidden">栅格布局</template>
                 <template md-tab-content>
-                    <bs-grid-layout-panel [gridLayout]="selectedPanelData"></bs-grid-layout-panel>
+                    <bs-grid-layout-panel [data]="selectedData"></bs-grid-layout-panel>
                 </template>
             </md-tab>
 
             <md-tab>
                 <template md-tab-label>列表布局</template>
                 <template md-tab-content>
-                    <bs-list-layout-panel></bs-list-layout-panel>
+                    <bs-list-layout-panel [data]="selectedData"></bs-list-layout-panel>
                 </template>
             </md-tab>
             <md-tab>
                 <template md-tab-label>导航</template>
                 <template md-tab-content>
-                    <bs-navbar-panel [bsNavbar]="selectedPanelData"></bs-navbar-panel>
+                    <bs-navbar-panel [data]="selectedData"></bs-navbar-panel>
                 </template>
             </md-tab>
             <md-tab>

@@ -19,7 +19,7 @@ import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular2-material/dialog
     styleUrls: ['./navbar.scss']
 })
 export class BsNavbar {
-    @Input() bsNavbar: Navbar = {
+    @Input() data: Navbar = {
         type: 'navbar',
         styles: { backgroundColor: 'red', color: 'red' }
     };
@@ -27,21 +27,13 @@ export class BsNavbar {
     @Output() openPanel = new EventEmitter();
 
     constructor() {
-        console.log(this.bsNavbar);
+        console.log(this.data);
     }
 
     selectFile() {
         console.log('select file');
     }
-    // 右键禁用鼠标,弹出数据操作面板
-    @HostListener('mousedown', ['$event'])
-    openSettingMenu(event: MouseEvent) {
-        if (event.button == 2) {
-            this.openPanel.emit({ type: BsNavbar, bsNavbar: this.bsNavbar });
-            // console.log('right click open setting menu');
-        }
-        event.preventDefault();
-    }
+
 }
 
 
@@ -55,7 +47,7 @@ export class BsNavbar {
     styleUrls: ['./navbar.scss']
 })
 export class BsNavbarPanel {
-    @Input() bsNavbar: Navbar;
+    @Input() data: Navbar;
     publishPanel: MdDialogRef<NavbarPublishPanel>;
 
     constructor(public websiteService: WebsiteService,
@@ -68,7 +60,7 @@ export class BsNavbarPanel {
     }
 
     publishNavbar() {
-        this.publishService.publishNavbar(this.bsNavbar, 'this is a navbar');
+        this.publishService.publishNavbar(this.data, 'this is a navbar');
     }
 
     openNavbarPublishPanel() {
@@ -81,7 +73,7 @@ export class BsNavbarPanel {
     }
 
     logStyle() {
-        console.log(this.bsNavbar.styles);
+        console.log(this.data.styles);
     }
 }
 

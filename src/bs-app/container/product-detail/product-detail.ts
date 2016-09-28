@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 
 @Component({
     moduleId: module.id,
-    selector: 'product-detail',
+    selector: 'bs-product-detail',
     templateUrl: './product-detail.html'
 })
-export class ProductDetail {
+export class BsProductDetail {
 
 }

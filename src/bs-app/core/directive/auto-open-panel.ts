@@ -1,4 +1,4 @@
-import { Directive, HostListener,Input, Output, EventEmitter } from '@angular/core';
+import { Directive, HostListener, Input, Output, EventEmitter } from '@angular/core';
 
 
 /**
@@ -8,15 +8,14 @@ import { Directive, HostListener,Input, Output, EventEmitter } from '@angular/co
     selector: '[auto-open-panel]'
 })
 export class AutoOpenPanel {
-    @Input('auto-open-panel') emitData;
-    @Output() openPanel = new EventEmitter();
-
+    @Input('auto-open-panel') panel: { editPanel: any, selectedIndex: number, data: any };
+    @Output('openPanel') openPanel = new EventEmitter();
     @HostListener('mousedown', ['$event'])
     openSettingMenu(event: MouseEvent) {
         if (event.button == 2) {
-            this.openPanel.emit({ type: this.emitData.Panel, data: this.emitData.data });
-            console.log(this.emitData);
+            this.openPanel.emit(this.panel);
         }
         event.preventDefault();
     }
+
 }

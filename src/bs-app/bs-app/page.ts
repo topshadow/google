@@ -10,7 +10,12 @@ import { ActivatedRoute, Params } from '@angular/router';
 
 
 
-import { BsNavbar, BsGridLayoutPanel, BsListLayoutPanel, BsProductList } from 'container';
+import {
+    BsNavbar,
+    BsGridLayoutPanel,
+    BsListLayoutPanel,
+    BsProductList
+} from 'container';
 
 import { MdDialog, MdDialogConfig, MdDialogRef } from '@angular2-material/dialog';
 
@@ -31,8 +36,8 @@ export class EveryPage implements OnInit, AfterViewInit {
     panels = Panels;
     page: Page;
     wellcomeDialogRef: MdDialogRef<WelcomeDialog>;
-    selectedPanelIndex: number;
-    selectedPanelData: any;
+    selectedData: any;
+    selectedIndex: number;
 
     // 活跃的组件,右键或左键可以打开控制面板,并且样式会处于激活状态,有边框
     activeComponent: any;
@@ -76,8 +81,8 @@ export class EveryPage implements OnInit, AfterViewInit {
 
     openPanel(event: any) {
         console.log(event);
-        this.selectedPanelIndex = event.selectedPanelIndex;
-        this.selectedPanelData = event.data;
+        this.selectedData = event.data;
+        this.selectedIndex = event.selectedIndex;
         this.toggleRightPanel();
     }
 
