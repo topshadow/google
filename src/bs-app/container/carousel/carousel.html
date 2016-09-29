@@ -6,7 +6,7 @@
             <li data-target="#main-slider" data-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            <div *ngFor="let slider of data.content.sliders;let i=index;" class="item" [class.active]="i==0" [ngStyle]="{'background-image':'url(\''+slider.lgImage+'\')' }" >
+            <div *ngFor="let slider of data.content.sliders;let i=index;" class="item" [class.active]="i==0" [background-image]=" slider.lgImage | passSafeReourceUrl " >
                 <div class="container">
                     <div class="col-sm-6">
                         <div class="carousel-content">
@@ -22,9 +22,6 @@
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
     <a class="prev hidden-xs" href="#main-slider" data-slide="prev">

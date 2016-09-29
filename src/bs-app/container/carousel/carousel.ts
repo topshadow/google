@@ -13,13 +13,13 @@ export class BsCarousel implements OnInit {
 
             sliders: [{
                 title1: '标题1', title2: '标题2',
-                lgImage: '//shapebootstrap.net/demo/html/corlate/images/slider/bg1.jpg)',
+                lgImage: `url(http://shapebootstrap.net/demo/html/corlate/images/slider/bg1.jpg)`,
                 smImage: '//shapebootstrap.net/demo/html/corlate/images/slider/img1.png'
             },
             {
                 title1: '第二组标题1', title2: '第二组标题2',
 
-                lgImage: 'http://shapebootstrap.net/demo/html/corlate/images/slider/bg2.jpg)',
+                lgImage: 'http://shapebootstrap.net/demo/html/corlate/images/slider/bg2.jpg',
                 smImage: 'http://shapebootstrap.net/demo/html/corlate/images/slider/img2.png'
             },
             {
