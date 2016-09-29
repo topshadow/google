@@ -48,7 +48,7 @@ interface Styles {
     color?: string;//字体颜色
     backgroundColor?: string;//背景颜色
     fontSize?: number;
-    backgroundImage?:string;
+    backgroundImage?: string;
 }
 
 /**
@@ -80,17 +80,20 @@ interface Part {
     type: string;
 }
 
+interface Slider {
+    title1?: string;
+    title2?: string;
+    lgImage?: string;
+    smImage?: string;
+}
 
 /**
  * 轮播
  */
 interface Carousel {
     content: {
-        sliders: {
-            title1?: string, title2?: string,
-            lgImage: any, smImage: string
-        }[]
-    };
+        sliders: Slider[]
+    }
 
 
 }

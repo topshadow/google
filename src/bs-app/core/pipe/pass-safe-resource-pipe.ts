@@ -7,8 +7,6 @@ export class PassSafeResouceUrlPipe implements PipeTransform {
 
     }
     transform(value: string, exponent: string): any {
-       return  this.security.bypassSecurityTrustStyle(value);
-        // return Math.pow(value, isNaN(exp) ? 1 : exp);
-
+       return  this.security.bypassSecurityTrustHtml(value);
     }
 }

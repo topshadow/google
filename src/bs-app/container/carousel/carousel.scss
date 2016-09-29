@@ -10,7 +10,17 @@
     margin-top: 25px;
     display: inline-block;
     }
+.carousel .carousel-content {
+    margin-top: 150px;
+}
 
+   .active .animation.animated-item-1 {
+    -webkit-animation: fadeInUp 300ms linear 300ms both;
+    -moz-animation: fadeInUp 300ms linear 300ms both;
+    -o-animation: fadeInUp 300ms linear 300ms both;
+    -ms-animation: fadeInUp 300ms linear 300ms both;
+    animation: fadeInUp 300ms linear 300ms both;
+}
     //锚点
  .carousel-indicators .active {
     width: 20px;
@@ -112,4 +122,8 @@ line-height:22px;
 
 h1{
     color:#fff;
+}
+
+md-list-item{
+    margin-top:30px;
 }

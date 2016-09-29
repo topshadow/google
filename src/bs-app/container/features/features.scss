@@ -1,0 +1,31 @@
+.feature{
+    background: #f2f2f2;
+    padding-bottom: 40px;
+    padding: 70px 0;
+
+    .center{
+    text-align: center;
+    padding-bottom: 55px;
+        h2{
+        font-size: 36px;
+        margin-top: 0;
+        margin-bottom: 20px;
+        }
+        .lead{
+            font-size: 16px;
+            line-height: 24px;
+            font-weight: 400;
+        }
+
+    }
+    .features{
+        padding:0;
+        .feature-wrap{
+            margin-bottom: 35px;
+            overflow: hidden;
+        }
+    }
+
+
+
+}

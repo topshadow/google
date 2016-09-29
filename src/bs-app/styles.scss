@@ -16,5 +16,12 @@
 
 // 重定义了 dialog的宽度
 .modal-dialog{
-    width:80%;
+    width:100%;
+}
+
+.border-red{
+    border: 2px red dotted; 
+}
+.border-primary{
+    border:2px solid blue ;
 }

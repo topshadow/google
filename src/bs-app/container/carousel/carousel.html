@@ -1,12 +1,11 @@
+<!--http://shapebootstrap.net/demo/html/corlate/-->
 <section id="main-slider" class="no-margin">
     <div class="carousel slide">
         <ol class="carousel-indicators">
-            <li data-target="#main-slider" data-slide-to="0" class="active"></li>
-            <li data-target="#main-slider" data-slide-to="1"></li>
-            <li data-target="#main-slider" data-slide-to="2"></li>
+            <li *ngFor="let slider of data.content.sliders;let i=index" data-target="#main-slider" [class.active]="i==0" [attr.data-slide-to]="i"></li>
         </ol>
         <div class="carousel-inner">
-            <div *ngFor="let slider of data.content.sliders;let i=index;" class="item" [class.active]="i==0" [background-image]=" slider.lgImage | passSafeReourceUrl " >
+            <div *ngFor="let slider of data.content.sliders;let i=index;" class="item" [class.active]="i==0" [background-image]="slider.lgImage">
                 <div class="container">
                     <div class="col-sm-6">
                         <div class="carousel-content">
@@ -40,7 +39,6 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                 <h4 class="modal-title" id="myModalLabel">轮播图片控制</h4>
-
             </div>
             <div class="modal-body">
                 <md-tab-group>
@@ -52,7 +50,91 @@
                     </md-tab>
                     <md-tab>
                         <template md-tab-label>当前模块数据</template>
-                        <template md-tab-content>当前模块数据版面</template>
+                        <template md-tab-content>
+                            <!--添加轮播图片-->
+
+                            <md-list [class.border-primary]="true">
+                                <div class="row">
+                                    <div class="col-xs-5">
+                                        <md-list-item>
+                                            <md-input placeholder="新轮播 -> title1" #newSliderTitle1>
+                                                <md-hint>推荐字数10-20 当前字数 {{newSliderTitle1.characterCount}}/20</md-hint>
+                                            </md-input>
+                                        </md-list-item>
+                                        <md-list-item>
+                                            <md-input placeholder="新轮播 -> title2" #newSliderTitle2>
+                                                <md-hint>推荐字数10-20 当前字数 {{newSliderTitle2.characterCount}}</md-hint>
+                                            </md-input>
+                                        </md-list-item>
+                                        <md-list-item>
+                                            <input (change)="uploadImage({file:selectLgImage.files[0], previewImage:previewLgImage})" type="file" [style.display]="'none'"
+                                                #selectLgImage />
+                                            <md-input placeholder="自定义图片地址" #customLgImageInput>
+                                                <span md-prefix [label-for]="selectLgImage"><button md-raised-button color="accent">上传图片</button></span>
+                                                <span md-suffix>推荐:1400:730</span>
+                                            </md-input>
+                                        </md-list-item>
+                                        <md-list-item>
+
+                                            <md-input placeholder="自定义中间图片地址" #customSmImageInput [style.width]="'100%'">
+                                                <span md-prefix [label-for]="selectSmImage"><button md-raised-button color="accent">上传图片</button></span>
+                                                <span md-suffix>推荐:406*590</span>
+                                            </md-input>
+
+                                            <input type="file" (change)="uploadImage({file:selectSmImage.files[0],previewImage:previewSmImage})" [style.display]="'none'"
+                                                #selectSmImage />
+
+
+
+                                        </md-list-item>
+                                        <md-list-item>
+                                            <button (click)="addNewSlider({title1:newSliderTitle1.value,
+                                    title2:newSliderTitle2.value,lgImage:previewLgImage.src,smImage:previewSmImage.src})"
+                                                md-raised-button color="primary">添加</button>
+                                            <button md-raised-button color="warn" (click)="newSliderTitle1.value=newSliderTitle2.value=customLgImageInput.value=customSmImageInput.value=null;">
+                                    重置</button>
+                                        </md-list-item>
+                                    </div>
+
+                                    <div class="col-xs-7">
+                                        <img #previewLgImage [src]="customLgImageInput.value" class="img-responsive">
+                                        <img #previewSmImage [src]="customSmImageInput.value" class="img-responsive">
+
+                                    </div>
+                                </div>
+                            </md-list>
+
+                            <md-list *ngFor="let slider of data.content.sliders;let i = index;" [class.border-red]="true">
+                                <div class="row">
+                                    <div class="col-xs-6">
+                                        <md-list-item class="h1">Slider {{i+1}} of {{data.content.sliders.length}}
+                                            <button md-fab color="primary" *ngIf="i!=0 " (click)="upSlider(slider)"><md-icon fontSet="fa" fontIcon="fa-long-arrow-up"></md-icon> </button>
+                                            <button md-fab color="primary" *ngIf="(i+1)!=data.content.sliders.length" (click)="downSlider(slider)">
+                                                <md-icon fontSet="fa" fontIcon="fa-long-arrow-down"></md-icon></button>
+                                            <button md-fab color="warn" (click)="deleteSlider(slider)"> <md-icon>delete</md-icon></button> </md-list-item>
+                                        <md-list-item>
+                                            <md-input placeholder="标题1" [(ngModel)]="slider.title1" [style.width]="'100%'"></md-input>
+                                        </md-list-item>
+                                        <md-list-item>
+                                            <md-input placeholder="标题2" [(ngModel)]="slider.title2" [style.width]="'100%'"></md-input>
+                                        </md-list-item>
+                                        <md-list-item>
+                                            <md-input placeholder="背景图片" [(ngModel)]="slider.lgImage"></md-input>
+                                        </md-list-item>
+                                        <md-list-item>
+                                            <md-input placeholder="中间图片" [(ngModel)]="slider.smImage"></md-input>
+                                        </md-list-item>
+                                    </div>
+                                    <div class="col-xs-6">
+                                        <img class="img-responsive" [src]="slider.lgImage" />
+                                        <img class="img-responsive" [src]="slider.smImage" />
+                                    </div>
+                                </div>
+                            </md-list>
+
+
+
+                        </template>
                     </md-tab>
                 </md-tab-group>
             </div>

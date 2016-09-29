@@ -89,7 +89,6 @@ export class EveryPage implements OnInit {
 
         // 禁用鼠标右键
         document.oncontextmenu = () => { return false; };
-
         // 打开欢迎模态框
         window['$'](this.el.nativeElement).find('#welcomModal').modal('toggle');
         // 消除导航栏上方的空格性问题，否则右边的侧边栏的导航栏会很长
