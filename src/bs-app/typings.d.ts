@@ -97,3 +97,16 @@ interface Carousel {
 
 
 }
+
+interface FeaturesItem{
+icon:string;
+summary:string;
+detail:string;
+}
+
+/**
+ * 特色
+ */
+interface Features {
+    content:{title1:string,title2:string,featureItems:FeaturesItem[]}
+}

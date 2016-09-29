@@ -17,7 +17,7 @@ import {
     BsNavbarPanel,
     NavbarPublishPanel,
     BsCarousel,
-    Features
+    BsFeatures
 } from 'container';
 import {
     UserService,
@@ -56,7 +56,7 @@ import {
         PassSafeResouceUrlPipe,
         BackgroundImageDirective,
         LabelForDirective,
-        Features
+        BsFeatures
     ],
     providers: [UserService, DocService, WebsiteService, PublishService],
     bootstrap: [DemoApp],

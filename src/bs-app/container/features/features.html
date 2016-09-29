@@ -1,4 +1,4 @@
-<section id="feature">
+<section class="feature">
     <div class="container">
         <div class="center wow fadeInDown animated" style="visibility: visible; animation-name: fadeInDown;">
             <h2>Features</h2>
@@ -7,6 +7,13 @@
         </div>
         <div class="row">
             <div class="features">
+                <div *ngFor="let featureItem of data.content.featureItems" class="col-md-4 col-sm-6 wow fadeInDown animated"  data-wow-duration="1000ms" data-wow-delay="600ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 600ms; animation-name: fadeInDown;">
+                    <div class="feature-wrap">
+                        <i class="{{featureItem.icon}}"></i>
+                        <h2>{{featureItem.summary}}</h2>
+                        <h3>{{featureItem.detail}}</h3>
+                    </div>
+                </div>
                 <div class="col-md-4 col-sm-6 wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="600ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 600ms; animation-name: fadeInDown;">
                     <div class="feature-wrap">
                         <i class="fa fa-bullhorn"></i>
@@ -53,3 +60,27 @@
         </div>
     </div>
 </section>
+
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="featuresModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">特色编辑</h4>
+                
+            </div>
+            <div class="modal-body">
+                <md-input placeholder="标题1"></md-input>
+                <md-input placeholder="标题2"></md-input>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
