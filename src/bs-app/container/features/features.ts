@@ -1,5 +1,6 @@
-import { Component, HostListener, ElementRef } from '@angular/core';
-
+import { Component, HostListener, ElementRef, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { WebsiteService } from 'core';
 
 
 @Component({
@@ -8,52 +9,57 @@ import { Component, HostListener, ElementRef } from '@angular/core';
     templateUrl: './features.html',
     styleUrls: ['./features.css']
 })
-export class BsFeatures {
-    data: Features = {
-        content: {
-            title1: 'Features',
-            title2: `Lorem ipsum dolor sit amet, 
-            consectetur adipisicing elit, sed do eiusmod tempor incididunt ut 
-et dolore magna aliqua. Ut enim ad minim veniam`,
-            featureItems: [{
-                icon: 'fa fa-bullhorn',
-                summary: 'Fresh and Clean',
-                detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit'
-            },
-            {
-                icon: 'fa fa-comments',
-                summary: 'Retina ready',
-                detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit'
-            },
-            {
-                icon: 'fa fa-cloud-download',
-                summary: 'Easy to customize',
-                detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit'
-            },
-            {
-                icon: 'fa fa-leaf',
-                summary: 'Adipisicing elit',
-                detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit'
-            },
-            {
-                icon: 'fa fa-cogs',
-                summary: 'Sed do eiusmod',
-                detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit'
-            },
-            {
-                icon: 'fa fa-heart',
-                summary: 'Labore et dolore',
-                detail: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit'
-            }
-            ]
-        }
-    };
-    constructor(private el: ElementRef) { }
+export class BsFeatures implements OnInit {
+    optionFeatureItems = ['fa fa-bullhorn', 'fa fa-comments',
+        'fa fa-cloud-download', 'fa fa-leaf',
+        'fa fa-cogs', 'fa fa-heart'];
+    intervalId = 0;
+    @Input() data: any;
+    constructor(private el: ElementRef,
+        private webService: WebsiteService,
+        private router: Router) { }
+
+    @HostListener('dblclick', ['$event'])
+    openPanelOnDesktop() {
+        this.openPanel();
+    }
+
+    @HostListener('touchstart', ['$event'])
+    openPanelOnMobile() {
+        this.openPanel();
+    }
+
+    ngOnInit() {
+        var elHammer = new window['Hammer'](this.el.nativeElement);
+        elHammer.on('pan', (ev) => {
+            clearTimeout(this.intervalId);
+            this.intervalId = window.setTimeout(() => {
+                var page = this.webService.findPage(this.router.url);
+                switch (ev.additionalEvent) {
+                    case 'panup':
+                        // var index = page.parts.indexOf(this.data);
+                        // page.parts.splice(index - 1, 2, page.parts[index], page.parts[index - 1]);
+                        break;
+                }
+            }, 300);
+
+        });
+    }
+    openPanel() {
+        window['$'](this.el.nativeElement).find('.modal').modal('toggle');
+    }
 
     @HostListener('mousedown', ['$event'])
     showModal(event) {
         if (event.button == 2) {
             window['$'](this.el.nativeElement).find('.modal').modal('toggle');
         }
+    }
+
+    deleteMe() {
+        var page = this.webService.findPage(this.router.url);
+        var index = page.parts.indexOf(this.data);
+        page.parts.splice(index, 1);
+
     }
 }

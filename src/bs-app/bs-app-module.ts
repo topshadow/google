@@ -13,11 +13,17 @@ import { ButtonPanel } from './panel/button-panel/button-panel';
 import { BsButton } from './panel/button-panel/bs-button';
 
 import {
-    BsNavbar,
-    BsNavbarPanel,
-    NavbarPublishPanel,
+
     BsCarousel,
-    BsFeatures
+    BsFeatures,
+    RecentWorks,
+    OurService,
+    OurSkill,
+    Bottom,
+    Footer,
+    AboutUs,
+    Navbar,
+    Basic1AboutUsOurSkill
 } from 'container';
 import {
     UserService,
@@ -48,20 +54,24 @@ import {
         EveryPage,
         ButtonPanel,
         BsButton,
-        BsNavbar,
-        BsNavbarPanel,
         AutoInjectStyle,
-        NavbarPublishPanel,
-        AutoOpenPanel, BsCarousel,
+      AutoOpenPanel, BsCarousel,
         PassSafeResouceUrlPipe,
         BackgroundImageDirective,
         LabelForDirective,
-        BsFeatures
+        BsFeatures,
+        RecentWorks,
+        OurService,
+        OurSkill,
+        Bottom,
+        Footer,
+        AboutUs,
+        Navbar,
+        Basic1AboutUsOurSkill
     ],
     providers: [UserService, DocService, WebsiteService, PublishService],
     bootstrap: [DemoApp],
     entryComponents: [
-        NavbarPublishPanel,
         BsCarousel,
         EveryPage]
 })

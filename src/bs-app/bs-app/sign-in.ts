@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { firebase, defaultWebsite, UserService, DocService, objectToArray } from 'core';
 
+import { basicTheme } from './choose-theme/index';
 
 
 
@@ -20,13 +21,14 @@ export class SignIn implements OnInit {
   repeatPasswordMessage: string;
   docs: Doc[] = [];
   doc: any = {};
+  themes = [basicTheme];
+  selectedTheme: Website = basicTheme;
   // 对话框
 
   constructor(private router: Router,
     private userService: UserService,
     private docService: DocService,
     private el: ElementRef
-
   ) {
     this.user = { username: '', password: '', repeatPassword: '' };
   }
@@ -68,7 +70,7 @@ export class SignIn implements OnInit {
           localStorage.setItem('password', serverUser.password);
           localStorage.setItem('remeberMe', 'true');
         }
-        window['$'](this.el.nativeElement).find('.modal').modal('toggle');
+        window['$'](this.el.nativeElement).find('#loginModal').modal('toggle');
       } else {
         alert('用户名或者密码错误');
       }
@@ -83,9 +85,21 @@ export class SignIn implements OnInit {
 
   signUp() {
     if (this.canRegister && this.checkRepeatPassword()) {
-      this.userService.addUser(this.user);
-    }
+      console.log(this.user);
 
+      // 添加一个空数据的用户
+      this.userService.addUser({
+        username: this.user.username,
+        password: this.user.password,
+        website: { pages: [{ path: 'index', pageName: 'Home', parts: [] }] }
+      });
+      // 注册成功,显示选择主题面板,用户可以选择一套模板
+      window['$'](this.el.nativeElement).find('#chooseThemePanel').modal('toggle');
+    }
+  }
+
+  chooseTheme(website: Website) {
+    this.userService.user.website = website;
   }
 
   checkRepeatPassword() {

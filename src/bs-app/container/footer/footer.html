@@ -1,0 +1,43 @@
+<footer id="footer" class="midnight-blue">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                &copy; 2013 <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">{{data.content.companyName}}</a>.
+                All Rights Reserved.
+            </div>
+            <div class="col-sm-6">
+                <ul class="pull-right">
+                    <li *ngFor="let link of data.content.links"><a href="link.href">{{link.title}}</a></li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade our-skill-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">编辑 Our Skill</h4>
+            </div>
+            <div class="modal-body">
+                <md-input placeholder="公司名称" [(ngModel)]="data.content.companyName" style="width:100%"> </md-input>
+                <div class="row" *ngFor="let  link of  data.content.links ">
+                    <md-input class="col-xs-6" placeholder="链接标题" [(ngModel)]="link.title"></md-input>
+                    <md-input class="col-xs-6" placeholder="链接地址" [(ngModel)]="link.href"></md-input>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

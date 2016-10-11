@@ -1,0 +1,60 @@
+<section id="services" class="service-item" [background-image]="data.content.backgroundImage">
+    <div class="container">
+        <div class="center wow fadeInDown">
+            <h2>{{data.content.title}}</h2>
+            <p class="lead">{{data.content.subTitle}}</p>
+        </div>
+        <div class="row">
+            <div class="col-sm-6 col-md-4" *ngFor="let service of data.content.services">
+                <div class="media services-wrap wow fadeInDown">
+                    <div class="pull-left">
+                        <img class="img-responsive" src="{{service.picture}}">
+                    </div>
+                    <div class="media-body">
+                        <h3 class="media-heading">{{service.title}}</h3>
+                        <p>{{service.subTitle}}</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">编辑Our Service</h4>
+            </div>
+            <div class="modal-body">
+                <md-input placeholder='主标题' [(ngModel)]="data.content.title" style="width:100%"></md-input>
+                <md-input placeholder="副标题" [(ngModel)]="data.content.subTitle" style="width:100%"></md-input>
+                <md-input placeholder="背景图片" [(ngModel)]="data.content.backgroundImage" style="width:100%"></md-input>
+                <md-tab-group>
+                    <md-tab *ngFor="let service of data.content.services; let i = index">
+                        <template md-tab-label>{{i+1}} / {{data.content.services.length}}</template>
+                        <template md-tab-content>
+                            <div class="col-xs-6">
+                            <md-input placeholder="服务名称" [(ngModel)]="service.title" style="width:100%"></md-input>
+                            <md-input placeholder="服务子标题" [(ngModel)]="service.subTitle" style="width:100%"></md-input>
+                            <md-input placeholder="服务图标" [(ngModel)]="service.picture" style="width:100%"></md-input>
+                            </div>
+                            <div class="col-xs-6">
+                                <img class="img-responsive" src="{{service.picture}}">
+                            </div>
+                        </template>
+                    </md-tab>
+                </md-tab-group>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+         
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

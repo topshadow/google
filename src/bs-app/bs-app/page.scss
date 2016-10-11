@@ -1,6 +1,9 @@
 .left-panel{
-    width:250px;
+    width:40%;
 }
+
+
+
 .right-panel{
     width:250px;
 }
@@ -11,7 +14,7 @@
 }
 
 [md-tab-label]{
-    display: none;
+
     
 }
 
@@ -27,3 +30,16 @@
     display:none;
 }
 
+
+@media(max-width:768px){
+    .left-panel{
+        width:80%;
+    }
+}
+
+
+.center-button{
+    display: table;
+    margin-left:auto;
+    margin-right:auto;
+}

@@ -15,13 +15,17 @@ export class WebsiteService {
 
     addPart(path: string, part: Part) {
         var editPage = this.findPage(path);
+        if (!editPage.parts) { editPage.parts = []; }
         editPage.parts.push(part);
     }
+
     /**
     *根据页面path来查找数据
     *service
     */
     findPage(path: string): Page {
+        path = path.startsWith('/') ? path.substring(1) : path;
+        path = path.indexOf(';') != -1 ? path.substring(0, path.indexOf(';')) : path;
         return this.userService.user.website.pages
             .find(page => { return page.path == path; });
     }
@@ -42,6 +46,14 @@ export class WebsiteService {
             console.log('File available at', url);
             return url;
         });
+    }
+
+    clearWebsite() {
+        this.userService.user.website = { pages: [{ path: 'index', parts: [] }] };
+    }
+
+    get pages(): Page[] {
+        return this.userService.user.website.pages;
     }
 
 }

@@ -1,0 +1,52 @@
+<section id="bottom" style="padding-top:70px;">
+    <div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
+        <div class="row">
+            <div class="col-md-3 col-sm-6" *ngFor="let linkSet of data.content.linkSets">
+                <div class="widget">
+                    <h3>{{linkSet.title}}</h3>
+                    <ul>
+                        <li *ngFor="let link of linkSet.links"><a href="link.href">{{link.title}}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade our-skill-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">编辑 Our Skill</h4>
+            </div>
+            <div class="modal-body">
+               
+
+                <md-tab-group>
+                    <md-tab *ngFor="let linkSet of data.content.linkSets;let i = index">
+                        <template md-tab-label>{{i+1}}/ {{data.content.linkSets.length}}</template>
+                        <template md-tab-content>
+                            <md-input placeholder="链接组标题" [(ngModel)]="linkSet.title" style="width:100%" color="accent"></md-input>
+                            <div class="row" *ngFor="let link of linkSet.links">
+                                <md-input class="col-xs-6" placeholder="链接标题" [(ngModel)]="link.title"  ></md-input>
+                                <md-input class="col-xs-6" placeholder="链接地址" [(ngModel)]="link.href" ></md-input> 
+                       </div>
+                        </template>
+                    </md-tab>
+                </md-tab-group>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

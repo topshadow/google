@@ -7,10 +7,12 @@
             <template md-tab-label>登陆</template>
             <template md-tab-content>
                 <md-card-content style="height:300px">
-                    <md-input autocomplete="off" dividerColor="primary" #registerUsername placeholder="用户名" maxLength="100" [(ngModel)]="user.username" style="width:100%">
+                    <md-input autocomplete="off" dividerColor="primary" #registerUsername placeholder="用户名" maxLength="100" [(ngModel)]="user.username"
+                        style="width:100%">
                         <md-hint align="end">{{registerUsername.characterCount}}/10</md-hint>
                     </md-input>
-                    <md-input autocomplete="off" divideColor="accent" #registerPassword  type="password" placeholder="密码" maxLength="100" [(ngModel)]="user.password" style="width:100%">
+                    <md-input autocomplete="off" divideColor="accent" #registerPassword type="password" placeholder="密码" maxLength="100" [(ngModel)]="user.password"
+                        style="width:100%">
                         <md-hint align="end">{{registerPassword.characterCount}}/10</md-hint>
                     </md-input>
                 </md-card-content>
@@ -24,8 +26,8 @@
                         <md-grid-tile colspane="1"></md-grid-tile>
 
                         <md-grid-tile colspan="2">
-                            <button md-raised-button color="primary" align="end" (click)="signIn()">登陆</button><button md-raised-button color="accent"
-                                align="end" (click)="signTab.selectedIndex=1">注册</button>
+                            <button md-raised-button color="primary" align="end" (click)="signIn()">登陆</button><button md-raised-button
+                                color="accent" align="end" (click)="signTab.selectedIndex=1">注册</button>
                         </md-grid-tile>
                     </md-grid-list>
 
@@ -38,54 +40,66 @@
             <template md-tab-label>注册</template>
             <template md-tab-content>
                 <md-card-content style="height:300px">
-                    <md-input (blur)="checkUserExist()" dividerColor="primary" [(ngModel)]="user.username" placeholder="用户名" maxLength="100" #nameInput style="width:100%">
+                    <md-input (blur)="checkUserExist()" dividerColor="primary" [(ngModel)]="user.username" placeholder="用户名" maxLength="100"
+                        #nameInput style="width:100%">
                         <md-hint color="warn" align="start">{{registerMessage}}</md-hint>
-                          <md-hint align="end">  6-10位长度, 当前:{{nameInput.characterCount}}/10</md-hint>
+                        <md-hint align="end"> 6-10位长度, 当前:{{nameInput.characterCount}}/10</md-hint>
                     </md-input>
-                    <md-input divideColor="accent " [(ngModel)]="user.password" type="password" placeholder="密码" maxLength="10" #passwordInput style="width:100%">
+                    <md-input divideColor="accent " [(ngModel)]="user.password" type="password" placeholder="密码" maxLength="10" #passwordInput
+                        style="width:100%">
                         <md-hint align="end">6-10位长度, 当前:{{passwordInput.characterCount}}/10</md-hint>
                     </md-input>
-                    <md-input divideColor="warn" (blur)="checkRepeatPassword()" type="password" [(ngModel)]="user.repeatPassword" placeholder="再次输入密码" maxLengh #repeatPasswordInput style="width:100%">
-                      <md-hint align="start">{{repeatPasswordMessage}}</md-hint>
-                        <md-hint align="end" >6-10位长度,当前:{{repeatPasswordInput.characterCount}}/10</md-hint>
+                    <md-input divideColor="warn" (blur)="checkRepeatPassword()" type="password" [(ngModel)]="user.repeatPassword" placeholder="再次输入密码"
+                        maxLengh #repeatPasswordInput style="width:100%">
+                        <md-hint align="start">{{repeatPasswordMessage}}</md-hint>
+                        <md-hint align="end">6-10位长度,当前:{{repeatPasswordInput.characterCount}}/10</md-hint>
                     </md-input>
                 </md-card-content>
                 <md-card-content>
                     <md-grid-list cols="4">
                         <md-grid-tile colspan="3"></md-grid-tile>
                         <md-grid-tile colspan="1"><button md-raised-button color="primary" (click)="signUp()">注册</button>
-                            </md-grid-tile>
+                        </md-grid-tile>
                     </md-grid-list>
                 </md-card-content>
             </template>
         </md-tab>
 
-<!-- 开发者文档-->
-<md-tab>
-  <template md-tab-label>开发者文档</template>
-  <template md-tab-content>
+        <!-- 开发者文档-->
+        <md-tab>
+            <template md-tab-label>开发者文档</template>
+            <template md-tab-content>
 
-      <md-grid-list cols="4" rowHeight="50px">
-      <md-grid-tile>文档</md-grid-tile>
-      <md-grid-tile>链接</md-grid-tile>
-      <md-grid-tile>简介</md-grid-tile>
-      <md-grid-tile>删除</md-grid-tile>
-      <div *ngFor="let doc of docs">
-          <md-grid-tile [auto-inject-style]="{color:'red'}" >{{doc.title}}</md-grid-tile>
-          <md-grid-tile><a href="{{doc.url}}" target="_blank">{{doc.url}}</a></md-grid-tile>
-          <md-grid-tile>{{doc.summary}}</md-grid-tile>
-          <md-grid-tile (click)="deleteDoc(doc)">删除</md-grid-tile>
-      </div>
-    </md-grid-list>
-<md-grid-list cols="2" rowHeight="50px">
-    <md-grid-tile>文档标题:</md-grid-tile><md-grid-tile><md-input placeholder="文档标题" [(ngModel)]="doc.title"></md-input></md-grid-tile>
-    <md-grid-tile>链接:</md-grid-tile><md-grid-tile> <md-input  [(ngModel)]="doc.url" placeholder="链接" style="width:100%"></md-input> </md-grid-tile>
-    <md-grid-tile>简述:</md-grid-tile><md-grid-tile><md-input [(ngModel)]="doc.summary" placeholder="简介"></md-input></md-grid-tile>
-    <md-grid-tile colspan="2"><button md-raised-button color="primary" (click)="addDoc()">添加</button></md-grid-tile>
-</md-grid-list >
-      
-  </template>
-</md-tab>
+                <md-grid-list cols="4" rowHeight="50px">
+                    <md-grid-tile>文档</md-grid-tile>
+                    <md-grid-tile>链接</md-grid-tile>
+                    <md-grid-tile>简介</md-grid-tile>
+                    <md-grid-tile>删除</md-grid-tile>
+                    <div *ngFor="let doc of docs">
+                        <md-grid-tile [auto-inject-style]="{color:'red'}">{{doc.title}}</md-grid-tile>
+                        <md-grid-tile><a href="{{doc.url}}" target="_blank">{{doc.url}}</a></md-grid-tile>
+                        <md-grid-tile>{{doc.summary}}</md-grid-tile>
+                        <md-grid-tile (click)="deleteDoc(doc)">删除</md-grid-tile>
+                    </div>
+                </md-grid-list>
+                <md-grid-list cols="2" rowHeight="50px">
+                    <md-grid-tile>文档标题:</md-grid-tile>
+                    <md-grid-tile>
+                        <md-input placeholder="文档标题" [(ngModel)]="doc.title"></md-input>
+                    </md-grid-tile>
+                    <md-grid-tile>链接:</md-grid-tile>
+                    <md-grid-tile>
+                        <md-input [(ngModel)]="doc.url" placeholder="链接" style="width:100%"></md-input>
+                    </md-grid-tile>
+                    <md-grid-tile>简述:</md-grid-tile>
+                    <md-grid-tile>
+                        <md-input [(ngModel)]="doc.summary" placeholder="简介"></md-input>
+                    </md-grid-tile>
+                    <md-grid-tile colspan="2"><button md-raised-button color="primary" (click)="addDoc()">添加</button></md-grid-tile>
+                </md-grid-list>
+
+            </template>
+        </md-tab>
 
     </md-tab-group>
 </md-card>
@@ -94,18 +108,46 @@
 
 
 <!-- 模态框（Modal） -->
-<div class="modal fade" propertyPanel tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel" >登陆模式</h4>
+                <h4 class="modal-title" id="myModalLabel">登陆模式</h4>
             </div>
             <div class="modal-body">
-                <button md-raised-button color="primary" (click)="editLogin()">编辑模式</button><button md-raised-button color="accent">预览模式</button>
+                <button md-raised-button color="primary" (click)="editLogin()">编辑模式</button>
+                <button md-raised-button color="accent">预览模式</button>
             </div>
-           
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+
+
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+
+
+<!--选用主题面板-->
+
+<div class="modal fade"  id="chooseThemePanel" tabindex="-1" role="dialog" aria-labelledby="chooseThemePanel" aria-hiiden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title" >选择主题</h4>
+            </div>
+            <div class="modal-body">
+                        <md-radio-group [(ngModel)]="selectedTheme">
+                        <md-radio-button *ngFor="let theme of themes">
+                            <img src="{{theme.picture}}">
+                        </md-radio-button>
+                        
+                        
+                        </md-radio-group>
+            </div>
+        </div>
+    </div>
+</div>

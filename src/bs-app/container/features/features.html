@@ -14,48 +14,7 @@
                         <h3>{{featureItem.detail}}</h3>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6 wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="600ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 600ms; animation-name: fadeInDown;">
-                    <div class="feature-wrap">
-                        <i class="fa fa-bullhorn"></i>
-                        <h2>Fresh and Clean</h2>
-                        <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="600ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 600ms; animation-name: fadeInDown;">
-                    <div class="feature-wrap">
-                        <i class="fa fa-comments"></i>
-                        <h2>Retina ready</h2>
-                        <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="600ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 600ms; animation-name: fadeInDown;">
-                    <div class="feature-wrap">
-                        <i class="fa fa-cloud-download"></i>
-                        <h2>Easy to customize</h2>
-                        <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="600ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 600ms; animation-name: fadeInDown;">
-                    <div class="feature-wrap">
-                        <i class="fa fa-leaf"></i>
-                        <h2>Adipisicing elit</h2>
-                        <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="600ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 600ms; animation-name: fadeInDown;">
-                    <div class="feature-wrap">
-                        <i class="fa fa-cogs"></i>
-                        <h2>Sed do eiusmod</h2>
-                        <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 wow fadeInDown animated" data-wow-duration="1000ms" data-wow-delay="600ms" style="visibility: visible; animation-duration: 1000ms; animation-delay: 600ms; animation-name: fadeInDown;">
-                    <div class="feature-wrap">
-                        <i class="fa fa-heart"></i>
-                        <h2>Labore et dolore</h2>
-                        <h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit</h3>
-                    </div>
-                </div>
+               
             </div>
         </div>
     </div>
@@ -69,16 +28,36 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">特色编辑</h4>
+                <h4 class="modal-title" >特色编辑 
+                    <button md-raised-button color="warn" (click)="deleteMe()"><md-icon>delete</md-icon></button>
+                </h4>
                 
             </div>
             <div class="modal-body">
-                <md-input placeholder="标题1"></md-input>
-                <md-input placeholder="标题2"></md-input>
+                        <md-tab-group>
+                    <md-tab *ngFor="let featureItem of data.content.featureItems;let i = index;">
+                        <template md-tab-label>{{i}} / {{data.content.featureItems.length}}</template>
+                        <template md-tab-content> 
+                            <div class="col-xs-6">
+                            <md-input disabled [(ngModel)]="featureItem.icon" class="feature-wrap">
+                                <span md-prefix><i class="{{featureItem.icon}}"></i>  </span>
+                            </md-input>
+                            <md-input [(ngModel)]="featureItem.summary" placeholder="简述"  style="width:100%"></md-input>
+                            <md-input [(ngModel)]="featureItem.detail"  placeholder="详情" style="width:100%"></md-input>
+                            </div>
+                            <div class="col-xs-6 feature-wrap">
+                                <md-radio-group [(ngModel)]="featureItem.icon">
+                                <md-radio-button class="col-xs-4" *ngFor="let optionFeatureItem of optionFeatureItems" [value]="optionFeatureItem">
+                                     <i class="{{optionFeatureItem}}"></i> 
+                                    </md-radio-button>
+                                </md-radio-group>
+                            </div>
+                        </template>
+                    </md-tab>
+                </md-tab-group>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                
+        
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

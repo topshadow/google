@@ -1,0 +1,109 @@
+<section id="middle">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 wow fadeInDown">
+                <div class="skill">
+                    <h2>{{data.content.title}}</h2>
+                    <p>{{data.content.subTitle}}</p>
+                    <div class="progress-warp" *ngFor="let skill of data.content.skills;let i =index;">
+                        <h3>{{skill.title}}</h3>
+                        <div class="progress">
+                            <div class="progress-bar" [class.color1]="i%4==0" [class.color2]="i%4==1" [class.color3]="i%4==2" [class.color4]="i%4==3"
+                                role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" [style.width]=" skill.percent+'%' ">
+                                <span class="bar-width"> {{skill.percent}}%</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 wow fadeInDown">
+                <div class="accordion">
+                    <h2>{{data.content.rightTitle}}</h2>
+                    <div class="panel-group" id="accordion1">
+                        <div class="panel panel-default" *ngFor="let advatange of data.content.advantages">
+                            <div class="panel-heading active">
+                                <h3 class="panel-title">
+                                    <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" (click)="$(collapseContent).collapse('toggle')">
+{{advatange.title}}
+<i class="fa fa-angle-right pull-right"></i>
+</a>
+                                </h3>
+                            </div>
+                            <div id="collapseOne1" class="panel-collapse collapse in" #collapseContent>
+                                <div class="panel-body">
+                                    <div class="media accordion-inner">
+                                        <div class="pull-left">
+                                            <img class="img-responsive" src="http://shapebootstrap.net/demo/html/corlate/images/accordion1.png">
+                                        </div>
+                                        <div class="media-body">
+                                            <h4>{{advatange.subTitle}}</h4>
+                                            <p>{{advatange.detail}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+<!-- 模态框（Modal） -->
+<div class="modal fade our-skill-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">编辑 Our Skill</h4>
+            </div>
+            <div class="modal-body">
+                <md-input placeholder="主标题" [(ngModel)]="data.content.title" style="width:100%"></md-input>
+                <md-input placeholder="副标题" [(ngModel)]="data.content.subTitle" style="width:100%"></md-input>
+                <md-input placeholder="右标题" [(ngModel)]="data.content.rightTitle" style="width:100%"></md-input>
+
+                <md-tab-group>
+                    <md-tab *ngFor="let skill of data.content.skills;let i = index">
+                        <template md-tab-label>{{i+1}}/ {{data.content.skills.length}}</template>
+                        <template md-tab-content>
+                            <div class="col-xs-6">
+                                <md-input placeholder="技能名称" [(ngModel)]="skill.title" style="width:100%"></md-input>
+                                <md-input placeholder="百分比" type="number" style="width:100%" [(ngModel)]="skill.percent">
+                                    <span md-suffix>%</span>
+                                </md-input>
+                            </div>
+                            <div class='col-xs-6'>
+                                <h1>预览</h1>
+                                <div class="progress-warp" >
+                                    <h3>{{skill.title}}</h3>
+                                    <div class="progress">
+                                        <div class="progress-bar" [class.color1]="i%4==0" [class.color2]="i%4==1" [class.color3]="i%4==2" [class.color4]="i%4==3"
+                                            role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" [style.width]=" skill.percent+'%' ">
+                                            <span class="bar-width"> {{skill.percent}}%</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </template>
+                    </md-tab>
+                </md-tab-group>
+
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

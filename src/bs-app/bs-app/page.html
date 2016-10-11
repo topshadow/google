@@ -1,80 +1,111 @@
 <md-sidenav-layout class="demo-root" fullscreen (openPagePanelEvent)="start.open()">
-    <md-sidenav #start mode="side" class="left-panel">
-        <md-card-content>
-            <md-grid-list cols="2">
-                <!--第一行-->
-                <md-grid-tile colspan="2"><button md-icon-button><md-icon>face</md-icon></button> </md-grid-tile>
-                <md-grid-tile><button md-icon-button><md-icon>print</md-icon></button> </md-grid-tile>
-                <md-grid-tile>
-                    <button md-icon-button><md-icon>fullscreen</md-icon></button>
-                </md-grid-tile>
-                <md-grid-tile (click)="savePage()">保存使用</md-grid-tile>
-                <md-grid-tile>
-                    <button md-raised-button color="primary">发布</button>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <button md-raised-button color="accent">还原<button md-icon-button><md-icon>undo</md-icon></button></button>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <button md-raised-button color="primary">CMS管理</button>
-                </md-grid-tile>
-                <md-grid-tile>
-                    <button md-fab color="warn">
-                        <md-icon class="md-24">delete</md-icon></button>
-                </md-grid-tile>
-                <md-grid-tile colspan="2">
-                    <button md-raised-button color="primary">设置页面</button>
-                </md-grid-tile>
-            </md-grid-list>
-        </md-card-content>
-        <md-nav-list>
-            <a md-list-item (click)="addNavbar()"><button md-raised-button color="accent" >添加导航</button></a>
-            <a md-list-item (click)="addInputPanel.toggle()"><button md-raised-button color="primary"> <md-icon >comment</md-icon></button> </a>
-          
-        </md-nav-list>
-        <button md-button (click)="start.close()">CLOSE</button>
-    </md-sidenav>
+	<md-sidenav mode="side" class="left-panel">
+		<md-card>
+			<md-card-content>
+				<md-grid-list cols="2" rowHeight="50px">
+
+					<md-grid-tile></md-grid-tile>
+					<md-grid-tile><button md-fab (click)="leftSidenav.close()" color="warn" align="end"><md-icon>close</md-icon></button>
+					</md-grid-tile>
+
+					<md-grid-tile colspan="2"><button md-icon-button><md-icon>face</md-icon></button>用户名:{{user.username}} </md-grid-tile>
+					<md-grid-tile><button md-icon-button><md-icon>print</md-icon></button> </md-grid-tile>
+					<md-grid-tile (click)="fullScreen()">
+						<button md-icon-button><md-icon>fullscreen</md-icon></button>
+					</md-grid-tile>
+
+					<md-grid-tile>
+                        <button md-raised-button color="primary">模板商城<button md-icon-button><md-icon class="fa fa-shopping-bag"></md-icon></button></button>
+                    </md-grid-tile>
+					<md-grid-tile (click)="clearWebsite()">
+						<button md-raised-button color="accent">清空当前页面<button md-icon-button><md-icon>delete</md-icon></button></button>
+					</md-grid-tile>
+
+					<md-grid-tile (click)="savePage()">
+						<button md-raised-button color="accent">保存<button md-icon-button><md-icon>save</md-icon></button></button>
+					</md-grid-tile>
+					<md-grid-tile>
+						<button md-raised-button color="primary">发布<button md-icon-button><md-icon class="fa fa-cloud-upload"></md-icon></button></button>
+					</md-grid-tile>
+					<md-grid-tile>
+						<button md-raised-button color="accent">还原<button md-icon-button><md-icon>undo</md-icon></button></button>
+					</md-grid-tile>
+					<md-grid-tile>
+						<button md-raised-button color="primary">CMS管理</button>
+					</md-grid-tile>
 
 
-    <!--页面主体内容-->
-    <div>
-        <button md-icon-button (click)="start.toggle()" id="start" style="display:none">
+				</md-grid-list>
+			</md-card-content>
+		</md-card>
+
+		<md-tab-group>
+			<md-tab *ngFor="let theme of themes">
+				<template md-tab-label>{{theme.name}}</template>
+				<template md-tab-content>
+					<md-card *ngFor="let template of theme.templates">
+						<md-card-title>{{template.name}}</md-card-title>
+						<img md-card-image src="{{template.picture}}">
+						<md-card-actions>
+							<button md-raised-button color="accent">预览</button>
+							<button md-raised-button color="primary" (click)="addPart({data:template.data})">添加使用</button>
+						</md-card-actions>
+					</md-card>
+				</template>
+			</md-tab>
+		</md-tab-group>
+	</md-sidenav>
+
+
+	<!--页面主体内容-->
+	<div>
+		<button md-icon-button (click)="start.toggle()" id="start" style="display:none">
         <md-icon class="md-24"  hidden >menu</md-icon>
       </button>
-      
-        <!--主页的内容区-->
-        <bs-features></bs-features>
-        <bs-carousel ></bs-carousel>
-      
-      
-        <div *ngFor="let part of page.parts">
-            <div [ngSwitch]="part.type">
-                <div *ngSwitchCase=" 'navbar' ">
-                    <bs-navbar [data]="part" ></bs-navbar></div>
-                <div *ngSwitchDefault>output2</div>
-            </div>
-        </div>
-   
 
-    
-    <div #root="$implicit" dir="ltr" class="demo-content">
-    </div>
-    </div>
+		<div *ngFor='let part of page.parts'>
 
-    <!--以下是各个操作组件的面板,在右侧开启,标签头部不会显示-->
-    <button (click)="rightPanel.toggle();" id="rightPanelButton" hidden></button>
-    <md-sidenav #rightPanel mode="side" align="end" id="test">
-        <md-tab-group >
-            <md-tab>
-                <template md-tab-label class="hidden">栅格布局</template>
-                <template md-tab-content>
-                    
-                </template>
-            </md-tab>
+			<div [ngSwitch]="part.data.selector">
+				<theme-basic1-navbar *ngSwitchCase="'theme-basic1-navbar'" [data]="part.data"></theme-basic1-navbar>
+				<bs-carousel *ngSwitchCase="'bs-carousel'" [data]="part.data"></bs-carousel>
+				<bs-features *ngSwitchCase="'bs-features'" [data]="part.data"></bs-features>
+				<recent-works *ngSwitchCase="'recent-works'" [data]="part.data"></recent-works>
+				<our-service *ngSwitchCase="'our-service'" [data]="part.data"></our-service>
+				<our-skill *ngSwitchCase="'our-skill'" [data]="part.data"></our-skill>
+				<bottom *ngSwitchCase="'bottom'" [data]="part.data"></bottom>
+				<bs-footer *ngSwitchCase="'bs-footer'" [data]="part.data"></bs-footer>
+				<!--主题2-->
+				<basic1-about-us-our-skill *ngSwitchCase="'basic1-about-us-our-skill'" [data]="part.data"></basic1-about-us-our-skill>
+				<about-us *ngSwitchCase="'about-us'" [data]="part.data"></about-us>
+			</div>
+		</div>
 
-        </md-tab-group>
 
-    </md-sidenav>
+
+
+		<!--主页的内容区-->
+
+
+
+
+		<div #root="$implicit" dir="ltr" class="demo-content">
+		</div>
+	</div>
+
+	<!--以下是各个操作组件的面板,在右侧开启,标签头部不会显示-->
+
+	<md-sidenav #rightPanel mode="side" align="end" id="test">
+		<md-tab-group>
+			<md-tab>
+				<template md-tab-label class="hidden">栅格布局</template>
+				<template md-tab-content>
+
+				</template>
+			</md-tab>
+
+		</md-tab-group>
+
+	</md-sidenav>
 </md-sidenav-layout>
 
 
@@ -83,18 +114,39 @@
 
 <!-- 模态框（Modal） -->
 <div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel" >欢迎来到旅烨建站</h4>
-            </div>
-            <div class="modal-body">
-            <h1>欢迎来到旅游建站系统,使用Ctrl键,呼出控制面板,使用Alt管理查看当前页面数据 </h1>
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+				<h4 class="modal-title" id="myModalLabel">模态框（Modal）标题</h4>
+			</div>
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-xs-4 center">
+						<i class="fa fa-arrow-left" style="font-size:48px"></i>
+						<h4>左滑 显示信息面板</h4>
+					</div>
+					<div class="col-xs-4 center">
+						<i class="fa fa-hand-o-up" style="font-size:48px;"></i>
+						<h4 class="center">双击编辑页面</h4>
+					</div>
+					<div class="col-xs-4 center">
+						<i class="fa fa-arrow-right" style="font-size:48px"></i>
+						<h4 class="center">右滑动 显示拖放面板</h4>
+					</div>
+				</div>
 
-            </div>
-           
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+				<div class="row">
+					<button class="center-button" md-fab color="primary" data-dismiss="modal">了解</button>
+				</div>
+			</div>
+			<div class="modal-footer">
+
+
+			</div>
+		</div>
+		<!-- /.modal-content -->
+	</div>
+	<!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->

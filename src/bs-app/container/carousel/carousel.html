@@ -38,9 +38,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title" id="myModalLabel">轮播图片控制</h4>
+                <h4 class="modal-title" id="myModalLabel">编辑图片轮播 
+                    <button class="pull-right" style="margin-right:30px" md-raised-button color="warn" (click)="deleteMe()"><md-icon>delete</md-icon></button> </h4>
             </div>
             <div class="modal-body">
+
                 <md-tab-group>
                     <md-tab>
                         <template md-tab-label>发布的模块</template>
@@ -83,9 +85,6 @@
 
                                             <input type="file" (change)="uploadImage({file:selectSmImage.files[0],previewImage:previewSmImage})" [style.display]="'none'"
                                                 #selectSmImage />
-
-
-
                                         </md-list-item>
                                         <md-list-item>
                                             <button (click)="addNewSlider({title1:newSliderTitle1.value,

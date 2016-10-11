@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserService, firebase,objectToArray } from 'core';
+import { UserService, firebase, objectToArray } from 'core';
 
 /**
  * 模块发布服务
@@ -8,6 +8,7 @@ import { UserService, firebase,objectToArray } from 'core';
 export class PublishService {
     private publishRef = firebase.database().ref('publish');
     private userService = new UserService();
+
     /**
      * publish navbar
      * 

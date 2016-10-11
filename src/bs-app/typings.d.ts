@@ -9,6 +9,7 @@ interface Part {
 interface Page {
     parts: Part[];
     path: string;
+    pageName?: string;
 }
 
 interface Website {
@@ -18,6 +19,7 @@ interface Website {
 interface User {
     username: string;
     password: string;
+
     repeatPassword?: string;
     website?: Website
 }
@@ -98,15 +100,15 @@ interface Carousel {
 
 }
 
-interface FeaturesItem{
-icon:string;
-summary:string;
-detail:string;
+interface FeaturesItem {
+    icon: string;
+    summary: string;
+    detail: string;
 }
 
 /**
  * 特色
  */
 interface Features {
-    content:{title1:string,title2:string,featureItems:FeaturesItem[]}
+    content: { title1: string, title2: string, featureItems: FeaturesItem[] }
 }

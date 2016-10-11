@@ -23,6 +23,7 @@ export class UserService {
       successMethod(snapshot.val());
     });
   }
+
   addUser(user: User) {
     this.firebase.database().ref(`users/${user.username}`).set(user);
   }

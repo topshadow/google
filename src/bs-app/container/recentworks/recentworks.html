@@ -1,0 +1,72 @@
+<section id="recent-works">
+    <div class="container">
+        <div class="center wow fadeInDown">
+            <h2>{{data.content.title}}</h2>
+            <p class="lead">{{data.content.subTitle}}</p>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-4 col-md-3" *ngFor="let product of data.content.products">
+                <div class="recent-work-wrap">
+                    <img class="img-responsive" src="{{product.picture}}" alt="">
+                    <div class="overlay">
+                        <div class="recent-work-inner">
+                            <h3><a href="#">{{product.title}}</a> </h3>
+                            <p>{{product.subTitle}}</p>
+                            <a class="preview" href="{{product.link}}" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</section>
+
+
+
+<div class="modal fade"  id="recentworks" tabindex="-1" role="dialog" aria-labelledby="rencentworksModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" 
+						aria-hidden="true">×
+				</button>
+				<h4 class="modal-title" id="recentworksModalLabel">
+					编辑Recent Works 
+				</h4>
+                <button class="pull-right" md-raised-button color="warn" (click)="deleteMe()">删除</button>
+			</div>
+			<div class="modal-body">
+				<md-input placeholder="主标题" [(ngModel)]="data.content.title"></md-input>
+                <md-input placeholder="副标题" [(ngModel)]="data.content.subTitle"></md-input>
+
+                <md-tab-group>
+                    <md-tab *ngFor="let product of data.content.products;let i = index;">
+                        <template md-tab-label>{{i+1}} / {{data.content.products.length}} </template>
+                        <template md-tab-content>
+                            <div class="col-xs-6">
+                            <md-input palceholder="产品标题" [(ngModel)]="product.title" style="width:100%"></md-input>
+                            <md-input placeholder="产品副标题" [(ngModel)]="product.subTitle" style="width:100%"></md-input>
+                            <md-input placeholder="产品链接/后期会添加产品预览模块" [(ngModel)]="product.link" style="width:100%"></md-input>
+                            <md-input placeholder="产品图片" [(ngModel)]="product.picture" style="width:100%">
+                                <span md-prefix ><button md-raised-button color="warn">上传图片</button> </span>
+                            </md-input>
+                            </div>
+                            <div class="col-xs-6">
+                                <img src="{{product.picture}}" class="img-responsive" />
+                            </div>
+                            
+                        </template>
+                    </md-tab>
+                </md-tab-group>
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" 
+						data-dismiss="modal">关闭
+				</button>
+				
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

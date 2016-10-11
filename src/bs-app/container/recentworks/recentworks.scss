@@ -1,0 +1,29 @@
+#recent-works{
+
+    padding: 70px 0px;
+    .center {
+        text-align: center;
+    }
+}
+
+.center h2{
+    font-size: 36px;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+h1 h2 h3 h4 h5 {
+    font-weight: 600;
+    font-family: 'Open Sans',sans-serif;
+    color: #4e4e4e;
+}
+.lead {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400
+}
+
+
+.recent-works .col-xs-12.col-sm-4.col-md-3 {
+    padding: 0;
+}
