@@ -12,6 +12,7 @@ import { EveryPage } from './bs-app/page';
 import { ButtonPanel } from './panel/button-panel/button-panel';
 import { BsButton } from './panel/button-panel/bs-button';
 
+import {TemplateShopping}  from './bs-app/template-shop';
 import {
 
     BsCarousel,
@@ -67,7 +68,8 @@ import {
         Footer,
         AboutUs,
         Navbar,
-        Basic1AboutUsOurSkill
+        Basic1AboutUsOurSkill,
+        TemplateShopping
     ],
     providers: [UserService, DocService, WebsiteService, PublishService],
     bootstrap: [DemoApp],

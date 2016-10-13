@@ -22,7 +22,7 @@ export class SignIn implements OnInit {
   docs: Doc[] = [];
   doc: any = {};
   themes = [basicTheme];
-  selectedTheme: Website = basicTheme;
+  selectedTheme = basicTheme;
   // 对话框
 
   constructor(private router: Router,
@@ -98,8 +98,9 @@ export class SignIn implements OnInit {
     }
   }
 
-  chooseTheme(website: Website) {
-    this.userService.user.website = website;
+  chooseTheme() {
+    this.userService.user.website = basicTheme;
+    this.editLogin();
   }
 
   checkRepeatPassword() {
@@ -114,6 +115,7 @@ export class SignIn implements OnInit {
   addDoc() {
     this.docService.addDoc(this.doc);
   }
+
   deleteDoc(doc: Doc) {
     this.docs.splice(this.docs.indexOf(doc), 1);
     firebase.database().ref('docs').set(this.docs);

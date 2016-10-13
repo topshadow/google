@@ -11,6 +11,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { MdSidenav } from '@angular2-material/sidenav';
 
 import { Panels, WebsiteService, defaultNavbar } from 'core';
+import { firebase } from 'core';
 
 import { themes } from './themes';
 
@@ -55,12 +56,9 @@ export class EveryPage implements OnInit, AfterViewInit {
         public websiteService: WebsiteService,
         public route: ActivatedRoute
     ) {
-        this.route.params.forEach((params: Params) => {
-            this.path = params['path'];
-            this.page = this.websiteService.findPage(this.path);
-            console.log(`当前页面是${this.path},数据是${JSON.stringify(this.page)}`);
-        });
+      this.reloadParts();
         this.user = this.websiteService.userService.user;
+        console.log('网站数据', this.websiteService.userService.user.website);
     }
 
     fullScreen() {
@@ -125,5 +123,17 @@ export class EveryPage implements OnInit, AfterViewInit {
         this.websiteService.clearWebsite();
     }
 
+    publish() {
+        firebase.database().ref('publish').push(this.websiteService.userService.user.website);
+    }
+
+    reloadParts() {
+          this.route.params.forEach((params: Params) => {
+            this.path = params['path'];
+            this.page = this.websiteService.findPage(this.path);
+            console.log(`当前页面是${this.path},数据是
+            ${JSON.stringify(this.websiteService.userService.user.website)}`);
+        });
+    }
 }
 

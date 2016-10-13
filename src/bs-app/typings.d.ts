@@ -21,7 +21,7 @@ interface User {
     password: string;
 
     repeatPassword?: string;
-    website?: Website
+    website?: any
 }
 
 interface Doc {

@@ -141,8 +141,8 @@
             </div>
             <div class="modal-body">
                         <md-radio-group [(ngModel)]="selectedTheme">
-                        <md-radio-button *ngFor="let theme of themes">
-                            <img src="{{theme.picture}}">
+                        <md-radio-button *ngFor="let theme of themes" (click)="chooseTheme()">
+                            <img src="{{theme.picture}}" >
                         </md-radio-button>
                         
                         
